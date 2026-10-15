@@ -95,3 +95,27 @@ Aceptación: valores coherentes con el plan y geometría (L03=18cm), etiquetas d
 Validación local: nueva suite de cotas PASS (14piezas, unidades, detalle frontal, órbita, zoom, cuatro vistas, teclado, parámetros y etiquetas sin solapamientos en1440/360px). Suites existentes de armado y navegador PASS; datos4/4 PASS; diff sin errores de espacios. Capturas inspeccionadas en claro/oscuro, incluidas P01/P03/P09/L03 y los tres detalles frontales. Revisión independiente sin hallazgos accionables. No se probó teléfono físico ni Safari.
 
 Actualización: el usuario autorizó expresamente hacer commit de los cambios. Se prepara el commit y push a main para actualizar GitHub Pages; el resultado del despliegue se comprobará antes de confirmar la publicación.
+
+## Progreso guardado y fichas de armado
+
+Objetivo aprobado por el usuario: recomendaciones1y2; los detalles3D de uniones quedan para una mejora posterior.
+
+Diseño: guardar localmente pasos completados, último paso consultado, cuatro comprobaciones pendientes y dimensionesW/D/f; restaurar antes de construir la interfaz. Casillas manuales independientes de la navegación, contador de completados y lista con marcas. Aviso claro de guardado en este navegador, sin sincronización; si el almacenamiento está bloqueado, seguir en memoria y avisar. El requisito original de no usar localStorage queda sustituido por esta solicitud.
+
+Fichas por paso: piezas con nombres, herramientas/materiales de uso, fijaciones y comprobaciones concretas. Mantener los textos del plan y sus medidas dinámicas. No asignar arbitrariamente tornillos4×25mm a bisagras/listones ni cantidades no definidas; mostrar lo pendiente de confirmar. Pendientes: medidas reales del balcón, cola resistente al agua, base/pernos del rascador y montaje/apoyo de bisagras.
+
+Archivos y dependencias: `index.html` para datos estructurados, almacenamiento validado y UI; `tests/progress.browser.cjs` para restauración/casillas/fallback y vista móvil; `tests/data.test.cjs` para cobertura de fichas si procede; README y este registro. Sin nuevas dependencias, sin cambios al modelo3D.
+
+- [x] Inspeccionar fuentes y estructura; presentar el plan acotado.
+- [x] Preparar prueba que reproduzca ausencia de progreso y fichas.
+- [x] Implementar fichas en los12pasos y comprobaciones del proyecto.
+- [x] Implementar persistencia versionada/validada, último paso y medidas; degradación a memoria sin perder las instrucciones.
+- [x] Verificar recarga, nueva pestaña, navegación sin autocompletar, desmarcado, datos corruptos/fuera de rango, errores de almacenamiento y ausencia de WebGL.
+- [x] Revisar visualmente escritorio1440px/móvil360px en claro/oscuro; regresiones de visor/cotas; revisión independiente.
+- [x] Actualizar documentación y preparar commit/publicación con la autorización de la sesión; verificar el despliegue antes de confirmar al usuario.
+
+Aceptación: progreso real distinto de paso visitado; selección inicial restaurada y coherente con visor; fichas completas y legibles sin inventar fijaciones; datos locales nunca se insertan comoHTML; la guía funciona aunque falle el almacenamiento/CDN. Cada casilla accesible por teclado y táctil. No sincronización entre dispositivos ni detalles nuevos de uniones3D en este cambio.
+
+Validación local: nueva suite de progreso PASS, incluyendo12fichas, recarga/nueva pestaña, cuatro pendientes, paso/medidas, completado/desmarcado, teclado, datos inválidos, lectura/escritura bloqueadas y uso sinCDN. Regresiones de navegador, armado y cotas PASS; datos4/4 PASS. Capturas inspeccionadas1440/360px claro/oscuro. Revisión independiente sin bloqueos. Se reprodujo y corrigió navegación móvil que dejaba el título fuera de vista (y=−395px): los controles explícitos ahora enfocan y desplazan al nuevo título; test PASS. No probado en teléfono físico ni Safari.
+
+La publicación se realiza desde main mediante el despliegue existente de GitHub Pages; se comprobará su resultado y la suite de progreso contra la URL pública antes de confirmar la entrega.

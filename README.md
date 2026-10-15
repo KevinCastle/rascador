@@ -6,6 +6,10 @@ Abre `index.html` en un navegador con conexión para cargar three.js y sus contr
 
 En **Pasos**, el visor muestra las piezas separadas durante la preparación y el armado correspondiente a cada etapa. Las piezas futuras permanecen ocultas. El paso de armado en seco permite alternar la prueba montada y el desarmado. El resaltado verde identifica las piezas que se trabajan; no indica el color del acabado.
 
+Cada paso tiene una ficha con piezas, herramientas, materiales y fijaciones, seguida de las instrucciones y una comprobación antes de continuar. Las fijaciones que el plan no define se indican como pendientes de confirmar. Marca manualmente los pasos completados y las cuatro comprobaciones del proyecto; navegar por la guía no completa pasos.
+
+El avance, el último paso consultado, las comprobaciones y las medidas elegidas se guardan en `localStorage` con la clave `rascador-progress-v1`. Se restauran al volver al mismo sitio y navegador; no se sincronizan entre dispositivos ni entre la vista previa local y GitHub Pages. Si el navegador bloquea el almacenamiento, la guía sigue funcionando y avisa que el avance solo se conserva durante la sesión abierta. Esta función sustituye la restricción inicial del plan de no guardar estado.
+
 En **Piezas y cortes**, selecciona una de las 14 piezas desde la lista o los botones de las tablas para verla aislada, girarla y consultar sus medidas. El frente incluye sus escotaduras y perforaciones; el listón L03 se muestra con su largo real de corte de18cm. Las vistas guiadas son independientes de las capas, apertura y separación que ajustes en **Modelo**. En teléfono, los enlaces «Ver este paso/pieza en3D» llevan al visor.
 
 Las piezas aisladas muestran cotas flotantes con flechas que siguen el giro del modelo: dimensiones en cm y espesor del terciado en mm. Puedes ocultarlas. En P03, el selector de detalle permite consultar por separado las entradas, la ranura para la mano y las ventilaciones, para mantener legibles las medidas en pantallas pequeñas. Los valores también están escritos en el panel.
@@ -30,4 +34,6 @@ Vistas guiadas: `node tests/assembly.browser.cjs` comprueba el armado progresivo
 
 Cotas flotantes: `node tests/dimensions.browser.cjs` comprueba las14piezas, los detalles del frente, actualización de medidas, giro, vistas y etiquetas legibles en escritorio y360px. También acepta `GUIDE_URL`.
 
-El registro de implementación y las verificaciones realizadas están en `tasks/todo.md`. El usuario autorizó expresamente el commit de las cotas flotantes y su publicación en GitHub Pages.
+Progreso y fichas: `node tests/progress.browser.cjs` verifica las12fichas, completado manual, pendientes, recarga y nueva pestaña, restauración de medidas, validación de datos y funcionamiento sin almacenamiento ni CDN. Genera capturas de escritorio/360px y admite `GUIDE_URL`.
+
+El registro de implementación y las verificaciones realizadas están en `tasks/todo.md`. Los cambios se publican mediante commits en main con la autorización del usuario en esta sesión.
