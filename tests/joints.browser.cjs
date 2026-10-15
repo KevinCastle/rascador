@@ -1,0 +1,95 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const url=process.env.GUIDE_URL||'http://127.0.0.1:8765';
+const cases=[['base',6],['corner',6],['cleat',7],['shelf',7],['fixed',8],['hinge',10]];
+async function open(page,id,step){
+ await page.evaluate(step=>{GuideApp.selectTab('steps');GuideApp.selectStep(step)},step);
+ await page.locator('#joint-select').selectOption(id);await page.locator('#joint-open').click();
+ await page.waitForFunction(id=>GuideApp.state.jointId===id&&GuideApp.jointGroup?.visible,id);
+}
+(async()=>{
+ const browser=await chromium.launch({headless:true});
+ try{
+  const page=await browser.newPage({viewport:{width:1440,height:900},reducedMotion:'reduce'}),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(url);await page.waitForFunction(()=>globalThis.GuideApp?.parts.length>20);
+  fs.mkdirSync('tests/screenshots',{recursive:true});
+  for(const width of [1440,360]){
+   await page.setViewportSize({width,height:width===360?800:900});
+   for(const [id,step] of cases){
+    await open(page,id,step);
+    assert.match(await page.locator('#joint-description').innerText(),/propuest|presenta/i);
+    assert.ok((await page.locator('#joint-description').innerText()).length>100);
+    assert.equal(await page.locator('#lid-button').isVisible(),false);
+    assert.equal(await page.locator('.dimension:visible').count(),0,'No deben quedar cotas del modo anterior');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+    await page.locator('#joint-glue').uncheck();await page.locator('#joint-glue').check();
+    if(id!=='hinge'){
+     await page.locator('#joint-fixings').uncheck();await page.locator('#joint-fixings').check();
+     await page.locator('[data-joint-state="assembled"]').click();
+     assert.equal(await page.locator('[data-joint-state="assembled"]').getAttribute('aria-pressed'),'true');
+     await page.locator('#viewer').screenshot({path:`tests/screenshots/joint-${id}-assembled-${width}.png`});
+     await page.locator('[data-joint-state="separated"]').click();
+    }else{
+     assert.ok(await page.locator('[data-joint-state="assembled"]').isDisabled(),'Bisagra no debe fingir montaje resuelto');
+     assert.ok(await page.locator('#joint-fixings').isDisabled(),'Sin agujeros inventados');
+    }
+    await page.locator('#viewer').screenshot({path:`tests/screenshots/joint-${id}-separated-${width}.png`});
+    if(id==='hinge'){
+     assert.equal(await page.locator('.joint-piece-label').filter({hasText:'H02'}).count(),1);
+     assert.ok(await page.locator('[data-joint-glue-legend]').isVisible());
+     assert.equal(await page.locator('[data-joint-fixings-legend]').isVisible(),false);
+    }
+    // Reframing must preserve choices, including the assembled view.
+    await page.locator('#joint-glue').uncheck();
+    if(id!=='hinge'){
+     await page.locator('[data-joint-state="assembled"]').click();
+     await page.locator('#joint-fixings').uncheck();
+    }
+    const before=await page.evaluate(()=>[GuideApp.state.jointState,GuideApp.state.jointGlue,GuideApp.state.jointFixings]);
+    await page.locator('#joint-open').click();
+    assert.deepEqual(await page.evaluate(()=>[GuideApp.state.jointState,GuideApp.state.jointGlue,GuideApp.state.jointFixings]),before);
+    for(const view of ['front','top','side','iso'])await page.locator(`[data-view="${view}"]`).click();
+    assert.ok(await page.evaluate(()=>GuideApp.jointGroup?.visible));
+    await page.locator('#joint-return').click();
+    assert.equal(await page.evaluate(()=>document.activeElement.id),'joint-open');
+    assert.ok(await page.evaluate(()=>!GuideApp.state.jointId));
+    assert.equal(await page.evaluate(()=>GuideApp.state.step),step);
+   }
+  }
+  // Dry assembly shares the geometry, but never suggests glue.
+  await open(page,'base',5);assert.ok(await page.locator('#joint-glue').isDisabled());assert.equal(await page.locator('#joint-glue').isChecked(),false);
+  await page.evaluate(()=>GuideApp.selectStep(6));assert.ok(await page.evaluate(()=>!GuideApp.state.jointId));
+  // Free-view settings and completion remain independent.
+  await page.locator('#step-complete').check();
+  await page.locator('[data-tab="model"]').click();await page.locator('#explode').fill('60');
+  await page.locator('[data-layer="structure"]').uncheck();
+  await open(page,'base',6);
+  await page.locator('[data-tab="model"]').click();
+  assert.ok(await page.evaluate(()=>!GuideApp.state.jointId));
+  assert.equal(await page.evaluate(()=>GuideApp.state.explode),.6);
+  assert.equal(await page.locator('[data-layer="structure"]').isChecked(),false);
+  await page.locator('#param-W').fill('120');await page.locator('#param-D').fill('45');
+  await open(page,'shelf',7);await page.locator('#joint-return').click();
+  await page.locator('[data-tab="cuts"]').click();await page.locator('#piece-select').selectOption('L03');
+  assert.match(await page.locator('#piece-info').innerText(),/18/);
+  await page.locator('[data-tab="steps"]').click();await page.evaluate(()=>GuideApp.selectStep(6));assert.ok(await page.locator('#step-complete').isChecked());
+  await page.emulateMedia({colorScheme:'dark'});await open(page,'cleat',7);
+  await page.locator('#viewer').screenshot({path:'tests/screenshots/joint-dark.png',animations:'disabled'});
+  assert.deepEqual(errors,[]);
+  // Text remains available without WebGL; missing detail data does not break the guide.
+  for(const dependency of ['cdn','joinery']){
+   const p=await browser.newPage({viewport:{width:360,height:800}}),failures=[];p.on('pageerror',e=>failures.push(e.message));
+   if(dependency==='cdn')await p.route(/^https:\/\/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)\//,r=>r.abort());
+   else await p.route('**/joinery.js',r=>r.abort());
+   await p.goto(url);await p.waitForFunction(()=>globalThis.GuideApp);
+   await p.evaluate(()=>GuideApp.selectStep(7));
+   assert.ok((await p.locator('#step-content').innerText()).length>200);
+   if(dependency==='cdn')assert.ok((await p.locator('#joint-description').innerText()).length>100);
+   await p.locator('#next-step').click();assert.equal(await p.evaluate(()=>GuideApp.state.step),8);
+   assert.deepEqual(failures,[]);await p.close();
+  }
+  console.log('PASS: seis uniones en escritorio/360px, separación, cola, fijaciones, vistas, retorno, armado seco, progreso y capas independientes, tamaños y fallback.');
+ }finally{await browser.close()}
+})().catch(e=>{console.error(e);process.exit(1)});

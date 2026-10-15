@@ -23,10 +23,12 @@ async function openPending(page){
    for(const selector of ['[data-card-parts]','[data-card-tools]','[data-card-fixings]','[data-card-checks]']){
     assert.ok((await page.locator(selector).innerText()).trim().length>15,`Paso ${step+1}: ${selector}`);
    }
+   assert.ok(await page.locator('.step-copy ol > li').count()>=4,`Paso ${step+1}: acciones numeradas`);
+   assert.doesNotMatch(await page.locator('.step-copy').innerText(),/\bx\s*=|\bx de\b/,'Explicar las referencias sin ejes sueltos');
   }
   assert.match(await page.locator('#completion-summary').innerText(),/0\s*(de|\/)\s*12/,'Navegar no completa pasos');
   await page.evaluate(()=>GuideApp.selectStep(6));
-  assert.match(await page.locator('[data-card-fixings]').innerText(),/4\s*×\s*40/);
+  assert.match(await page.locator('[data-card-fixings]').innerText(),/4\s*×\s*40|4 mm de diámetro y 40 mm de largo/);
   await page.locator('#step-complete').focus();await page.locator('#step-complete').press('Space');
   assert.ok(await page.locator('#step-complete').isChecked());
   assert.equal(await page.evaluate(()=>document.activeElement.id),'step-complete','Marcar conserva el foco');
@@ -56,6 +58,8 @@ async function openPending(page){
   data=await saved(other);assert.equal(data.pending.glue,false);await other.close();
   await page.waitForFunction(()=>GuideApp.parts.length>20);
   fs.mkdirSync('tests/screenshots',{recursive:true});
+  await page.evaluate(()=>GuideApp.selectStep(2));
+  await page.locator('.step-copy').screenshot({path:'tests/screenshots/instructions-front-desktop.png'});
   await page.evaluate(()=>GuideApp.selectStep(6));
   await page.screenshot({path:'tests/screenshots/progress-desktop.png',fullPage:true});
   await page.setViewportSize({width:360,height:800});
@@ -64,6 +68,9 @@ async function openPending(page){
   assert.equal(await page.evaluate(()=>document.activeElement.tagName),'H2');
   await page.locator('#prev-step').click();
   await page.screenshot({path:'tests/screenshots/progress-mobile.png',fullPage:true});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.evaluate(()=>GuideApp.selectStep(2));
+  await page.locator('.step-copy').screenshot({path:'tests/screenshots/instructions-front-mobile.png'});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.emulateMedia({colorScheme:'dark'});
   await page.screenshot({path:'tests/screenshots/progress-dark.png',fullPage:true,animations:'disabled'});
@@ -104,6 +111,7 @@ async function openPending(page){
    const p=await c.newPage(),failures=[];p.on('pageerror',e=>failures.push(e.message));
    await p.goto(url);await ready(p);await p.locator('#step-complete').check();
    await p.locator('#next-step').click();
+   assert.ok(await p.locator('.step-copy ol > li').count()>=4,'Acciones disponibles sin 3D');
    assert.match(await p.locator('#progress-storage-status').innerText(),/no se (pudo|puede)|solo|mientras/i);
    assert.match(await p.locator('#completion-summary').innerText(),/1\s*(de|\/)\s*12/);
    assert.ok((await p.locator('[data-card-tools]').innerText()).length>20);

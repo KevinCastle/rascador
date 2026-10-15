@@ -92,7 +92,7 @@ async function assertLabelsReadable(page){
   assert.deepEqual(await visible(page),['P03']);
   await page.locator('[data-tab="steps"]').click();
   await page.evaluate(()=>GuideApp.selectStep(6));
-  await page.locator('#content-steps .viewer-jump').click();
+ await page.locator('#step-content .viewer-jump').click();
   assert.ok(await page.locator('#viewer').evaluate(el=>Math.abs(el.getBoundingClientRect().top)<5));
   await page.screenshot({path:'tests/screenshots/assembly-mobile.png',fullPage:true});
   assert.deepEqual(errors,[]);

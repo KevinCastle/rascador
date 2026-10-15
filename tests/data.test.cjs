@@ -29,3 +29,16 @@ test('Guía completa y suma del presupuesto original',()=>{
   const g=guide();assert.equal(g.steps.length,12);
   assert.equal(g.materials.reduce((sum,m)=>sum+(m.total||0),0),190307);
 });
+test('Las instrucciones del frente conservan las medidas al ajustar el ancho',()=>{
+ const g=guide();
+ for(const [width,left,right] of [[120,'91,5','116,5'],[134,'98,5','123,5'],[135,'99','124'],[136,'99,5','124,5']]){
+  const front=g.instructions(2,width,49,1.8);
+  assert.match(front.setup,new RegExp(width+' cm'));
+  assert.match(front.setup,/cara exterior/);
+  assert.ok(front.actions[1].includes(left+' cm')&&front.actions[1].includes(right+' cm'));
+  assert.match(front.actions[0],/6 cm.*31 cm/);
+  assert.match(front.actions[2],/57 cm.*69 cm/);
+  assert.match(front.actions[3],/51, 56, 61, 66, 71 y 76 cm/);
+  assert.match(front.actions[3],/6 cm sobre el borde inferior/);
+ }
+});
