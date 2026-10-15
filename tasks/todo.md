@@ -167,4 +167,23 @@ Verificación (2026-10-15): datos y geometría 10/10 PASS, incluyendo medidas de
 
 El usuario pidió expresamente realizar commits de todo el avance, como excepción a la instrucción anterior de reservarle los commits. Se agrupan el código y sus pruebas en un commit, y la documentación y lecciones en otro. Antes de guardar: datos y geometría 10/10 PASS y `git diff --check` PASS. Esta solicitud no incluye push ni publicación; quedan dos mejoras posteriores por definir.
 
+## Planos de corte de ambas planchas
+
+Solicitud: añadir distribución de la plancha de15mm y hacer más claros ambos planos, piezas, medidas y cortes. Diseño presentado: plancha122×244cm, dos franjas por espesor, piezas identificadas con sus medidas, cotas exteriores, sobrantes diferenciados, pérdida de3mm y secuencia de corte. Vista vertical en pantallas pequeñas, textos y tablas asociados al plano. Mantener dimensiones ajustables, orientación de veta y acceso existente al3D.
+
+Distribución15mm: primera franja P02 + P04 + P05; segunda P03 + P06. Ambas de41,4cm. Distribución18mm: primera franja P01 de fondoD; segunda P09 + P07 + P08 + P10 con fondoD+1. Contabilizar también cortes finales contra sobrantes y recortes de altura de P08/P10. El dibujo representa rectángulos antes de abrir las entradas del frente.
+
+Archivos: `cutting.js` para geometría pura de piezas/cortes/sobrantes; `index.html` para diagramasSVG, texto y adaptación a pantalla; pruebas geométricas y navegador; README y este registro. Sin dependencias nuevas. Main posee datos/pruebas/documentación; implementador posee index.
+
+- [x] Crear distribuciones y comprobar cabida, pérdidas y ausencia de superposiciones en todo el rango permitido.
+- [x] Renderizar ambos planos con medidas, leyenda, sobrantes y pasos de corte legibles.
+- [x] Verificar medidas dinámicas, tablas/3D, teclado, móvil360/488px, escritorio y modo oscuro.
+- [x] Revisar capturas, registrar resultados y entregar local sin publicar.
+
+Aceptación: aparecen las10piezas correctas (cinco por plancha), cada una una sola vez; medidas coinciden con Piezas y cortes; el plano incluye122/244cm, pérdida de3mm y sobrantes; ninguna pieza se gira respecto de la distribución acordada; textos y cotas legibles sin desbordar la página; guía usable aunque no cargue3D. No se promete optimización global ni dimensiones reales de fábrica.
+
+Verificación: datos/geometría12/12 PASS, incluyendo153combinaciones de ancho/fondo. Piezas+cortes+sobrantes suman el área exacta de la plancha sin superposiciones. Suite de planos PASS a1440/488/360px: etiquetas dentro delSVG y sin colisiones, parámetros, selección por teclado, tema oscuro, sinCDN y ausencia de cutting.js. Regresión de armado/piezas PASS. Capturas inspeccionadas; corregido contraste de la llamada P10 en oscuro y añadido contexto al sobrante que contiene esa llamada. Revisión independiente sin defectos materiales. `git diff --check` PASS; sin teléfono físico ni Safari.
+
+Se mantuvo la plancha vertical también en escritorio para mejorar la legibilidad dentro del panel; la orientación del dibujo se explica como medida vertical × horizontal. Corrección contable frente al esquema anterior: las bandas de18mm y sus cortes ocupan99,6cm, y la segunda banda y sus cortes202,7cm con medidas iniciales. La distribución15mm conserva todas las piezas paralelas a la veta. Entrega local, sin commits ni push para esta mejora.
+
 Fuentes: plan y presupuesto locales para espesores, cantidades existentes y centros de bisagras. Scanavini https://tiendascanavini.cl/ficha/67/bisagras-acero-inoxidable-30x30-sin-rodamientos confirma bisagra3×3inox sinrodamientos; página sin plantilla dimensionada de agujeros. Titebond https://www.titebond.com/resources/use/glues?handler=Search respalda encolado sobre madera desnuda; seguir etiqueta de la cola comprada para presión/secado, sin trasladar tiempos de otra marca. Las separaciones y posiciones nuevas son propuestas geométricas propias, no recomendaciones estructurales de esos fabricantes.

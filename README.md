@@ -2,7 +2,7 @@
 
 [Abrir la guía en GitHub Pages](https://kevincastle.github.io/rascador/) · [Repositorio](https://github.com/KevinCastle/rascador)
 
-Abre `index.html` en un navegador con conexión para cargar three.js y sus controles. Conserva `joinery.js` en la misma carpeta: contiene los datos de los acercamientos de uniones. No necesita instalación ni compilación.
+Abre `index.html` en un navegador con conexión para cargar three.js y sus controles. Conserva `joinery.js` y `cutting.js` en la misma carpeta: contienen los datos de uniones y planos de corte. No necesita instalación ni compilación.
 
 En **Pasos**, el visor muestra las piezas separadas durante la preparación y el armado correspondiente a cada etapa. Las piezas futuras permanecen ocultas. El paso de armado en seco permite alternar la prueba montada y el desarmado. El resaltado verde identifica las piezas que se trabajan; no indica el color del acabado.
 
@@ -15,6 +15,10 @@ El avance, el último paso consultado, las comprobaciones y las medidas elegidas
 En **Piezas y cortes**, selecciona una de las 14 piezas desde la lista o los botones de las tablas para verla aislada, girarla y consultar sus medidas. El frente incluye sus escotaduras y perforaciones; el listón L03 se muestra con su largo real de corte de18cm. Las vistas guiadas son independientes de las capas, apertura y separación que ajustes en **Modelo**. En teléfono, los enlaces «Ver este paso/pieza en3D» llevan al visor.
 
 Las piezas aisladas muestran cotas flotantes con flechas que siguen el giro del modelo: dimensiones en cm y espesor del terciado en mm. Puedes ocultarlas. En P03, el selector de detalle permite consultar por separado las entradas, la ranura para la mano y las ventilaciones, para mantener legibles las medidas en pantallas pequeñas. Los valores también están escritos en el panel.
+
+En **Piezas y cortes**, cada espesor tiene su plano de la plancha completa de 122 × 244 cm. Incluye las piezas con medidas finales, sobrantes, pérdidas de sierra y secuencia para separar las franjas y obtener los rectángulos. La plancha se muestra vertical para facilitar la lectura en el panel y en teléfono; las piezas conservan su orientación respecto de la veta. P03 se corta primero como rectángulo: las entradas y perforaciones se hacen en el paso3.
+
+Las distribuciones reservan 3 mm por corte, incluidos los cortes finales contra el sobrante y el ajuste de altura de P08/P10. Comprueba el ancho de tu disco y las dimensiones reales de la plancha antes de trazar. Es una distribución que cabe en todo el rango de la guía, no una promesa de optimización máxima. Piezas, pérdidas y sobrantes se calculan desde los mismos rectángulos, antes de hacer las aberturas.
 
 En los pasos **6, 7, 8, 9 y 11**, abre **Entiende esta unión en 3D → Acercar esta unión**. Hay seis detalles: base y tabique, esquina de paredes, apoyo de tapa, apoyos de repisa, parte fija/refuerzo y presentación de bisagras. Puedes separar o reunir los tableros, mostrar la cola amarilla y consultar la entrada de los tornillos. Los tramos recortados están identificados; regresar al paso conserva tu progreso y los ajustes del modelo general.
 
@@ -35,6 +39,8 @@ La guía permite explorar variaciones, pero no valida la resistencia de la banca
 ## Verificación
 
 Datos y medidas: `node --test tests/data.test.cjs`.
+
+Planos de corte: `node --test tests/cutting.test.cjs` comprueba las153combinaciones enteras de ancho/fondo admitidas, medidas sin giro, límites, cortes finales, partición de área y ausencia de superposiciones. `node tests/cutting.browser.cjs` verifica ambos planos a1440/488/360px, etiquetas, medidas dinámicas, selección de piezas por teclado, modo oscuro y disponibilidad sin3D. Acepta `GUIDE_URL`.
 
 Uniones: `node --test tests/joinery.test.cjs` verifica puntas contenidas, recorridos en madera y ausencia de cruces entre tornillos de distintos detalles en cuatro tamaños. `node tests/joints.browser.cjs` recorre las seis escenas a 1440 y 360 px, controles, armado en seco, retorno, independencia del progreso y funcionamiento sin CDN o sin datos de uniones. También acepta `GUIDE_URL`.
 
