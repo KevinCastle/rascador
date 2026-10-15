@@ -57,3 +57,21 @@ Repositorio público: https://github.com/KevinCastle/rascador
 Sitio: https://kevincastle.github.io/rascador/
 
 Verificación del 15 de octubre de 2026: despliegue inicial exitoso (run38792694525), respuesta HTTP200 y suite completa de navegador PASS contra la URL pública (PC,360px,12pasos,parámetros,tapa/despiece,capas,cotas,presupuesto,teclado,modo oscuro y fallback de CDN). Datos4/4 PASS. El test de fallback bloquea únicamente los dos CDN para permitir verificar también una URL alojada mediante HTTPS.
+
+## Vistas 3D por paso y pieza
+
+Solicitud: mostrar cómo progresa el armado y permitir inspeccionar las piezas/cortes en 3D. Sustituye el resaltado del conjunto completo en Pasos; mantiene las medidas originales.
+
+Archivos: `index.html` (interfaz, escenas, geometría y cámara); `tests/assembly.browser.cjs` (regresiones de los modos); `README.md` y este registro. Sin dependencias nuevas.
+
+Plan:
+- [x] Inspeccionar visor y registrar prueba que falla porque aparecen piezas futuras en el paso7.
+- [x] Implementar escenas deterministas: vista previa; piezas cortadas separadas; frente aislado; lijado y sellado; prueba en seco/desarmado; caja definitiva; listones/repisa; parte fija/refuerzo; acabado; tapa/cojín; conjunto final.
+- [x] Selector accesible y botones en tablas para inspeccionar P01–P10/L01–L04 con medidas, espesor y cortes. L03 aislado mide18cm, aunque montado representa16,1cm.
+- [x] Separar poses/visibilidad de Pasos/Cortes respecto de capas, explosión y tapa de Modelo. Encuadrar únicamente piezas visibles. Conservar instrucciones y navegación sin WebGL.
+- [x] Verificar progresión, regreso entre pasos, piezas aisladas, parámetros, transición entre pestañas y360px con capturas.
+- [ ] Revisión independiente, pruebas existentes y nuevas, commit/push autorizado y comprobar despliegue Pages.
+
+Criterios: piezas futuras ausentes; contexto previamente montado visible; resaltado del trabajo actual; dimensiones sin inventar; piezas pequeñas encuadradas; acceso al visor desde navegación móvil. Publicar sobre el sitio existente tras validar.
+
+Validación local de esta mejora: pruebas de datos4/4 PASS; suite original de navegador PASS; nueva suite de armado PASS (14piezas, frente sin/con cortes, L03 de18cm, prueba en seco, capas/apertura independientes, medidas y navegación360px). Revisión independiente sin defectos importantes. Se corrigieron según capturas el ángulo de las vistas interiores, el resaltado y la superposición de etiquetas; prueba automática de etiquetas sin solapamientos en escritorio y360px.
