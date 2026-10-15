@@ -204,3 +204,68 @@ Verificación: datos/geometría13/13 PASS. Suites de uniones, progreso, armado y
 La regresión de navegación reveló un fallo intermitente anterior: una proyección no finita durante el movimiento de cámara dejaba las cotas sin extremos y detenía el renderizado. Ahora se omite ese fotograma; una prueba fuerza la proyección inválida y comprueba recuperación y ausencia de errores. Armado y cotas volvieron a pasar después del arreglo. Sin teléfono físico ni Safari. Entrega local, sin commit ni publicación.
 
 Fuentes: plan y presupuesto locales para espesores, cantidades existentes y centros de bisagras. Scanavini https://tiendascanavini.cl/ficha/67/bisagras-acero-inoxidable-30x30-sin-rodamientos confirma bisagra3×3inox sinrodamientos; página sin plantilla dimensionada de agujeros. Titebond https://www.titebond.com/resources/use/glues?handler=Search respalda encolado sobre madera desnuda; seguir etiqueta de la cola comprada para presión/secado, sin trasladar tiempos de otra marca. Las separaciones y posiciones nuevas son propuestas geométricas propias, no recomendaciones estructurales de esos fabricantes.
+
+## Materiales editables con guardado local
+
+Diseño aprobado: editar producto, cantidad, total de la fila y enlace; marcar «Ya lo tengo», tachar y excluir del pendiente. Mantener total conocido del listado y pendiente de compra, sin tratar «Por cotizar» como gratis. Guardar automáticamente en este navegador, con respaldo JSON exportable/importable y restauración de valores originales. No hay sincronización entre dispositivos; localhost y GitHub Pages guardan listas separadas. Sin nuevas dependencias, cuentas, commits ni publicación.
+
+Plan de ejecución: `materials-store.js` contiene validación, totales y persistencia versionada independiente de progreso; `materials-ui.js` y `materials.css` presentan tarjetas y formulario accesible, integrados en `index.html`. Se conservan notas técnicas y categorías originales. Clave estable por nombre original de material, inmutable en el editor. No multiplicar total por cantidad: el usuario introduce el total de la fila. URL vacía o HTTP(S), precio entero CLP no negativo o null para pendiente. Texto renderizado como texto, nunca HTML importado. Importación validada completa antes de sustituir, con confirmación; restauración también confirmada. Fallo de almacenamiento se informa y permite exportar los cambios en memoria.
+
+- [x] Pruebas de datos primero: actualización/persistencia, totales y cotizaciones, importar/exportar, rechazo atómico, corrupción y almacenamiento bloqueado.
+- [x] Implementar store y controles de edición, estado y respaldo; mantener materiales disponibles sin 3D.
+- [x] Comprobar en navegador recarga, edición, tachado reversible, totales, respaldo/restauración, errores, teclado y lectura a360/488/1440px.
+- [x] Revisar cambios, ejecutar regresiones pertinentes y documentar limitaciones.
+
+Main posee store, pruebas y documentación; implementador posee UI/CSS e integración en index. Aceptación: cambios persisten tras recarga; marcar existente reduce solo el pendiente; precio cero y pendiente se distinguen; archivos inválidos no alteran datos; ninguna modificación afecta pasos, geometría o progreso.
+
+Resultado: 20 tarjetas editables con Guardar/Cancelar/Escape, casilla reversible, totales separados, cotizaciones pendientes y restauración por fila o global. Respaldo JSON valida versión, identificación única/completa de filas, tipos, límites y protocolos de enlaces antes de sustituir la lista. Precio original pendiente se representa como null; cero introducido por el usuario es conocido. Clave independiente `rascador-materials-v1`. No se cambió el presupuesto base ni el avance de construcción.
+
+Verificación: pruebas de store fallaron primero por ausencia del módulo y luego pasaron5/5; datos/geometría/store18/18 PASS. Suite de materiales PASS (recarga, totales, rechazo de enlace peligroso y JSON inválido, cancelación, restauración por fila/global, texto literal, respaldo, progreso independiente, teclado, almacenamiento bloqueado y sin3D). Suite de progreso existente PASS. Capturas inspeccionadas a360/488/1440px y oscuro; corregido contraste de Guardar al pasar el cursor y fuente móvil16px. Revisión independiente sin defectos. `git diff --check` PASS. Sin teléfono físico ni Safari; sin sincronización entre pestañas/dispositivos; datos vinculados al navegador y sitio, respaldo manual disponible. Sin commit ni publicación de esta mejora.
+
+## Acabado simplificado aprobado — conversación lateral, 2026-10-15
+
+Alcance explícito: balcón techado orientado al norte, sol y salpicaduras ocasionales sin agua acumulada; madera visible y defectos cosméticos aceptados. Sustituir masilla, imprimante, esmalte y poliuretano separado por un barniz exterior con tinte, producto/precio pendientes. Mantener lijado y contactos de cola limpios. Actualizar guía, fichas, materiales, plan y presupuesto del repositorio, sin tocar originales externos ni el trabajo previo ajeno a este alcance. Sin commit ni push.
+
+Plan: (1) aceptación de nuevos pasos/listado y migración antes de editar; (2) actualizar contenido y migrar exclusivamente el conjunto anterior de cuatro acabados, conservando ediciones de las otras filas; (3) actualizar pruebas que esperan el listado anterior y comprobar datos/sintaxis/diff; (4) documentar estimación de barniz y límites de verificación. Cantidad preliminar: área conservadora6,96m² incluyendo ambas caras/cantos/listones y L04, sin descontar recortes ni contactos de cola; a10m²/L/mano y20%extra: 3manos2,51L, 4manos3,34L. Buscar1galón≈3,8L, confirmar con ficha real antes de comprar.
+
+Resultado de este alcance: lista vigente17filas y subtotal conocido$127.847 (se retiran$62.460); barniz y cojín/velcro por cotizar. Actualizados pasos4/5/10, sus herramientas y comprobaciones, documentos del repositorio y expectativas de pruebas. Las cuatro filas retiradas quedan identificadas como LEGACY en el presupuesto de referencia. No se alteraron geometría ni precios de las demás filas. Migración limitada reconoce el conjunto completo anterior y conserva sus ediciones/estado en las filas vigentes; respaldos incompletos siguen rechazándose. Los archivos originales de Downloads no se editaron.
+
+Verificación: aceptación del acabado y migración fallaron antes del cambio, luego datos/materiales/geometría20/20PASS; sintaxis inline y módulo PASS; git diff --check PASS. La suite materials.browser.cjs se actualizó a17filas y los nuevos totales, pero Chromium no pudo arrancar por permiso de MachPortRendezvous en el sandbox de esta conversación lateral; no se solicitó ampliación de permisos. No se afirma nueva validación visual. Cambios sin commit ni publicación.
+
+## Producto de barniz seleccionado — conversación lateral, 2026-10-15
+
+Petición: añadir el Kölor Marino Brillante Nogal del enlace140087918 y aconsejar posibles ahorros. Agregado al listado y documentos:1galón≈3,8L, precio referencial$21.990 visible en la ficha indexada de Sodimac (otras versiones muestran$26.490; confirmar al comprar). Subtotal base$149.837, faltan cojín/velcro y posibles fijaciones adicionales. Se actualizaron instrucciones a3manos exterior/al menos2interior, lijado entre capas, listo para usar y espera de2semanas antes de limpiar con paño húmedo. No aplicar recetas de dilución del ejemplo previo SIPA.
+
+Las listas guardadas con la fila provisional intacta reciben el producto seleccionado conservando su marca «Ya lo tengo». Se preservan cotizaciones o productos personalizados; no se toca el almacenamiento del navegador directamente. Prueba de esa transición: RED antes de implementar y GREEN después; datos/materiales13/13PASS y diff--checkPASS. Navegador no repetido por la restricción ya documentada; sin cambios de layout. Sin commit ni publicación. No se retiró ningún otro material: rodillo prescindible si aplica con brocha, prensa obtenible prestada, cantidades de lija y cajas de tornillos ajustables tras revisar necesidades; son propuestas pendientes del usuario.
+
+## Rodillo y prensa a conseguir aparte
+
+Petición: retirar rodillo y prensa del listado de compra y dejarlos como elementos que se conseguirán aparte; consultar compatibilidad de un enlace de tornillos4×40mm. Alcance: quitar las dos filas de `Guide.materials`, sección visible «Conseguir aparte», subtotal base$127.360 ($149.837 menos$22.477), sincronizar referencias y aceptar listas guardadas/respaldos anteriores conservando las demás ediciones. Mantener el acabado vigente y todo trabajo previo de conversaciones laterales. No sustituir aún el producto de tornillos ni su precio: el usuario preguntó por su compatibilidad.
+
+Verificación: prueba de migración RED→GREEN, incluyendo transición combinada del antiguo acabado y las herramientas retiradas; datos/materiales14/14PASS. Suite de navegador de materiales PASS con15filas, subtotal nuevo, sección aparte, edición, persistencia, respaldo/restauración, teclado, móvil y almacenamiento bloqueado. `git diff --check` PASS. Sin commit ni publicación.
+
+Ficha indexada oficial Sodimac112857521: Mamut tirafondo para madera, diámetro4mm, largo40mm, cabeza plana, acero zincado brillante,6unidades por paquete. Coincide con el tipo y medida de las uniones indicadas4×40; para la estimación de80tornillos se requieren14paquetes=84. No se verificó resistencia estructural ni una clasificación exterior del recubrimiento; no reemplaza tornillos4×25 ni los de bisagras. URL: https://www.sodimac.cl/sodimac-cl/articulo/112857519/Tornillo-Tirafondo-Cabeza-Plana-Madera-40-mm-4-mm-6-unidad%28es%29/112857521 . Precio no cambiado.
+
+## Sustituir tornillos4×40 por paquetes Mamut
+
+Petición aprobada: reemplazar la caja Turbo Screw144u por el enlace Mamut112857521. Aplicado:14paquetes×6=84tornillos; precio referencial$390/paquete, total$5.460; ahorro$6.530 y subtotal base$120.830. Fuente de precio: mismo SKU vendido por Sodimac en Falabella https://www.falabella.com/falabella-cl/product/112857519/Tornillo-Tirafondo-Madera-40-mm-4-mm-6-unidad%28es%29/112857521 . Sodimac confirma especificaciones pero el texto accesible no muestra precio. Se deja explícito confirmar precio/stock al comprar.
+
+Migración de filas guardadas o respaldos: sustituir la caja anterior identificada por producto+URL, conservar owned y todas las demás filas; productos personalizados distintos siguen intactos. Documentación/presupuesto y expectativas de subtotal sincronizados. Prueba de migración RED→GREEN; datos/materiales15/15PASS y diff--checkPASS. Sin commit ni publicación.
+
+## Brocha existente y patines PRO RACK
+
+Solicitud: sacar brocha por estar disponible y reemplazar elevadores anteriores por patín110305638. Aplicado:14filas, sección «Ya tienes: brocha», seis patines a$1.590/u=$9.540. Ahorro frente a patas anteriores$2.400 más brocha$4.690; subtotal base$113.740. La conversación previa sobre bisagras fue una evaluación y aún no sustituyó esa fila; no se incorpora aquí ese ahorro hipotético.
+
+Ficha oficial consultada: https://www.sodimac.cl/sodimac-cl/articulo/110305628/Patin-zincado-con-goma/110305638 . Acero,25×25mm, alto total38mm, nivelable. No constan rosca, rango instalado, herrajes incluidos ni capacidad de carga; no inferir anclaje directo a terciado ni separación real al suelo. Materiales, instrucciones de armado en seco y panel Modelo explican comprobar fijación y altura instalada. Se conservan cortes y geometría de referencia, sin trasladar38mm de alto total al parámetro f.
+
+Migración limitada elimina brocha y sustituye solo la ficha del elevador anterior conservando owned; otras ediciones y productos personalizados intactos. Datos y migraciones16/16PASS tras RED→GREEN; diff--checkPASS. Documentos del repositorio sincronizados. Sin commit ni publicación.
+
+## Corrección: aplicar el pack de bisagras solicitado
+
+El usuario señaló que la evaluación anterior no se había llevado al listado. Sustituidas las tres Scanavini por1pack FIXSER de3bisagras negras3×3pulgadas, acero no inoxidable, SKU141360957 a$4.890referenciales (ficha Sodimac verificada). Ahorro$11.280; subtotal base$102.460 tras los cambios anteriores. Notas conservan comprobar longitud de tornillos respecto de la tapa18mm; no se reducen tornillos4×40/4×25. Documentos y referencias actualizados, retirando la ficha Scanavini como producto vigente.
+
+La migración reconoce la fila anterior por producto+URL y la sustituye en guardados y respaldos conservando owned y las demás ediciones. Productos alternativos personalizados intactos. Prueba RED→GREEN; datos/materiales17/17PASS y diff--checkPASS. Lección registrada. Sin commit ni publicación.
+
+## Guardar todo el avance de materiales
+
+Solicitud explícita de commit de todos los cambios pendientes. Incluye lista editable con guardado local y respaldos, migraciones de catálogo, acabado con barniz, sustituciones de tornillos/patines/bisagras, herramientas aparte/existentes y documentos/pruebas asociados. Validación previa:25/25pruebas de datos/geometría/materiales PASS; navegador general PASS a escritorio/360px,12pasos, parámetros,3D, presupuesto, tema oscuro y fallbackCDN, sin errores de página. Suite específica de materiales PASS tras el último cambio de bisagras. Diff sin errores de espacios. Sin push ni publicación solicitados.

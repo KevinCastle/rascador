@@ -25,9 +25,9 @@ test('Altura de patas y fondo actualizan sus medidas dependientes',()=>{
   assert.equal(d.height,48);assert.equal(d.depth,54);assert.equal(d.anteroom,46.5);
   assert.deepEqual(Array.from(d.cuts.find(c=>c.id==='P04').size),[50,41.4]);
 });
-test('Guía completa y suma del presupuesto original',()=>{
+test('Guía completa y suma del presupuesto con acabado simplificado',()=>{
   const g=guide();assert.equal(g.steps.length,12);
-  assert.equal(g.materials.reduce((sum,m)=>sum+(m.total||0),0),190307);
+  assert.equal(g.materials.reduce((sum,m)=>sum+(m.total||0),0),102460);
 });
 test('Las instrucciones del frente conservan las medidas al ajustar el ancho',()=>{
  const g=guide();
@@ -41,4 +41,11 @@ test('Las instrucciones del frente conservan las medidas al ajustar el ancho',()
   assert.match(front.actions[3],/51, 56, 61, 66, 71 y 76 cm/);
   assert.match(front.actions[3],/6 cm sobre el borde inferior/);
  }
+});
+test('El acabado aprobado usa solo barniz exterior con tinte y conserva doce pasos',()=>{
+ const g=guide();assert.equal(g.steps.length,12);
+ const names=g.materials.map(m=>m.name);
+ for(const removed of ['Masilla para Madera','Imprimante para Exterior','Esmalte al Agua para Exterior','Poliuretano al Agua'])assert.ok(!names.includes(removed));
+ const varnish=g.materials.find(m=>m.name==='Barniz Exterior con Tinte');assert.ok(varnish);assert.equal(varnish.total,21990);assert.match(varnish.url,/140087918$/);assert.match(varnish.product,/Kölor/);assert.match(varnish.quantity,/3,8/);
+ const active=JSON.stringify([g.steps,[3,4,9].map(i=>g.instructions(i,135,49,1.8))]);assert.doesNotMatch(active,/poliuretano|imprimante|esmalte|rellena con masilla/i);assert.match(active,/barniz exterior con tinte/);
 });

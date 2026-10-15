@@ -139,13 +139,13 @@ La página debe mostrar estos pasos con **título, texto, y las piezas resaltada
 1. **Medir y preparar** — Mide el ancho y el fondo reales del balcón, deja 1 cm de margen. Reúne materiales y herramientas. Usa lentes, mascarilla y guantes al cortar y lijar. *(Resaltar: nada, vista general.)*
 2. **Cortar las planchas y los listones** — Corta según la sección 6. Usa una guía recta para la sierra circular y descuenta ~3 mm por corte. Mide tu plancha real antes de trazar. *(Resaltar: P01–P10, L01–L04.)*
 3. **Cortar la pared frontal** — Marca y corta las dos escotaduras de 25 × 30 desde el borde inferior (x 6–31 y 99–124) y la muesca de 12 × 3 desde el borde superior (x 57–69). Corta con la circular hasta la marca y termina las esquinas con serrucho. Taladra 6 orificios de Ø20 mm a 6 cm del borde inferior. *(Resaltar: P03.)*
-4. **Lijar y rellenar** — Lija con grano 80, rellena nudos y orificios con masilla, lija con grano 120 y redondea levemente las esquinas. *(Resaltar: todas las piezas de terciado.)*
-5. **Sellar los cantos y el interior** — Aplica 2 o 3 manos de poliuretano al agua en todos los cantos y en las caras interiores (zona del arenero y antecámara). No selles las superficies que vas a pegar. Deja secar entre manos. *(Resaltar: P01–P06, caras interiores.)*
+4. **Lijar y suavizar** — Lija las zonas ásperas con grano 80, continúa con grano 120 y redondea levemente las aristas expuestas. Se aceptan parches y defectos cosméticos visibles; no se usa masilla. No aceptar capas despegadas ni madera debilitada. El grano final depende del barniz. *(Resaltar: todas las piezas de terciado.)*
+5. **Barnizar los cantos y el interior** — Usa el mismo barniz exterior con tinte en los cantos y las caras interiores, incluidos descanso, arenero y antecámara. Protege con cinta y deja madera limpia en todos los contactos de cola. Kölor Marino Nogal: al menos 2 manos en interior con lijado entre capas. Producto listo para usar; confirmar grano y secado en el envase. *(Resaltar: P01–P06, caras interiores.)*
 6. **Armar en seco** — Atornilla las patas bajo la base. Une base, paredes y tabique con tornillos, sin cola. Prueba la bandeja y la alfombra adentro, revisa escuadras y holguras, y desarma. *(Resaltar: P01–P06, F01–F06, R01, R02.)*
 7. **Armado definitivo de la caja** — Con cola para madera y tornillos de 4 × 40 mm cada ~15 cm, con guía de 3 mm: paredes a la base, y laterales y tabique a las paredes frontal y trasera. Limpia la cola sobrante y mide las diagonales para verificar la escuadra. *(Resaltar: P01–P06.)*
 8. **Listones y repisa** — Pega y atornilla el listón de apoyo de la tapa en la cara derecha del tabique (L01), a ras del borde superior. Fija los listones de la repisa (L02, L03) con su borde superior a 27,2 cm sobre la base interior, y apoya la repisa (P10). *(Resaltar: L01–L03, P10.)*
 9. **Parte fija y refuerzo** — Pega el refuerzo de 33 × 33 bajo la parte fija, centrado donde irá el rascador. Pega y atornilla la parte fija sobre las paredes de la zona de descanso (x 0–37). Deja 0,5 cm de holgura con la tapa. *(Resaltar: P07, P08.)*
-10. **Acabado** — Rellena los tornillos con masilla y lija con grano 120 y 180. Aplica imprimante (1 o 2 manos) y esmalte al agua para exterior (2 manos), con lija suave entre manos. Deja curar según la etiqueta. *(Resaltar: exterior de toda la caja.)*
+10. **Acabado** — Lija y retira restos de cola. Prueba el tinte en un sobrante. Usa barniz exterior con tinte apto para aplicación directa en madera, sin imprimante, esmalte ni poliuretano separado. Barniza todas las caras y cantos expuestos, parte inferior de la base, ambas caras de tapa y repisa, listones y zona bajo el rascador. Completa 3 manos en exterior y al menos 2 en interior con lijado entre capas, considerando las ya aplicadas en el paso 5. Mantén limpios los contactos de cola pendientes y deja curar según la etiqueta. *(Resaltar: exterior de toda la caja.)*
 11. **Tapa, bisagras y cojín** — Ubica la tapa con 0,5 cm de holgura. Instala las 3 bisagras simples en el borde trasero (x 45, 70 y 95). Fija el cojín a la tapa con velcro adhesivo. *(Resaltar: P09, H01–H03, C01.)*
 12. **Rascador y puesta en marcha** — Centra el rascador (base de 31 × 31) sobre la parte fija y fíjalo con 4 pernos a través de la parte fija y el refuerzo, con tuercas ciegas. Si la base del rascador es cerrada y no puedes llegar a ella, usa tornillos largos desde abajo. Coloca la bandeja y la alfombra, y prueba que la gata entre por la abertura. *(Resaltar: R03, R01, R02.)*
 
@@ -165,7 +165,7 @@ La página debe mostrar estos pasos con **título, texto, y las piezas resaltada
 | Elemento | Color |
 |---|---|
 | Terciado a la vista (interior, cantos) | `#D8B98A` |
-| Exterior pintado (café) | `#6F4E37` |
+| Madera barnizada con tinte (tono café referencial) | `#6F4E37` |
 | Cojín | `#7A7F85` |
 | Metal (bisagras, patas) | `#B8BEC4` |
 | Alfombra | `#E8A0B4` |
@@ -182,22 +182,28 @@ Piezas no resaltadas en un paso: gris translúcido (opacidad ~0,15).
 | Terciado estructural 15 mm (122 × 244) | 1 |
 | Terciado estructural 18 mm (122 × 244) | 1 |
 | Pino cepillado seco 1×2, 3,2 m | 1 |
-| Bisagras simples de acero inoxidable 3 × 3 pulgadas | 3 |
-| Patas regulables 18–30 mm | 6 |
+| Bisagras simples FIXSER de acero negro 3 × 3 pulgadas | 1 pack de 3; no inoxidable |
+| Patines PRO RACK zincados con goma | 6; alto total 38 mm, separación instalada y anclaje por confirmar |
 | Tornillos para madera 4 × 40 mm | ~80 |
 | Tornillos para madera 4 × 25 mm | ~20 |
 | Pernos coche inox 1/4 × 2-1/2 pulgadas, con golillas y tuercas ciegas | 4 |
 | Cola fría para madera (que diga resistente al agua) | 1 |
-| Masilla para madera | 1 |
-| Lijas grano 80, 120 y 180 | 4 de cada |
-| Imprimante para exterior | 1 |
-| Esmalte al agua para exterior (color café) | 1 (con ¼ de galón alcanza) |
-| Poliuretano al agua (solo interior y cantos; no protege del sol) | 1 |
-| Rodillo de espuma y brocha | 1 de cada |
-| Prensa rápida | 1 |
+| Lijas grano 80, 120 y final/entre capas según barniz | Cantidad por confirmar con la ficha |
+| Barniz exterior con tinte | Kölor Marino Brillante Nogal, 1 galón (aprox. 3,8 L) |
+| Brocha | Ya disponible; fuera del presupuesto |
+| Rodillo de espuma | Conseguir aparte si se necesita; fuera del presupuesto |
+| Prensa rápida | Conseguir aparte; fuera del presupuesto |
 | Cojín de ~97 × 48 × 5–6, con velcro adhesivo | 1 |
 
 Herramientas que se asumen: sierra circular, taladro, serrucho, escuadra, broca de pala de Ø20 mm, brocas guía de 3 y 4 mm.
+
+## Acabado acordado el 2026-10-15
+
+Balcón techado orientado al norte, con sol y gotas/salpicaduras ocasionales, sin agua acumulada. Se acepta la apariencia del terciado. Un único barniz exterior con tinte, apto para exposición solar y aplicación directa sobre madera, sustituye los cuatro productos de acabado anteriores. No se barniza el rascador reutilizado. El color del modelo sigue siendo orientativo.
+
+Estimación conservadora para W = 135 / D = 49: ambas caras y cantos rectangulares de P01–P10 suman 6,76408 m²; listones incluidos L04 suman 0,195832 m²: total 6,959912 m², aproximadamente 7 m²/mano. No se descuentan recortes ni contactos pegados, lo que deja margen. A 10 m²/L/mano, 3 manos y 20 % extra requieren 2,51 L; 4 manos requieren 3,34 L. Buscar 1 galón ≈ 3,8 L; confirmar con el producto real antes de comprar. Las manos reales en interior/exterior se ajustan a su ficha. Diluyente, grano de lija y compatibilidad del rodillo también pendientes.
+
+Producto seleccionado: [Kölor Barniz Marino Brillante Nogal, 1 galón](https://www.sodimac.cl/sodimac-cl/articulo/140087917/barniz-marino-brillante-1-galones-nogal/140087918). Precio referencial $21.990, confirmar al comprar. La ficha declara 40 m²/galón/mano, 3 manos exterior y al menos 2 interior, lijado entre capas, listo para usar (dilución con agua solo para pistola). Para 7 m² × 3 manos: 0,525 galón; con 20 % de margen, 0,63 galón ≈ 2,4 L. Un galón alcanza según este rendimiento teórico. Confirmar grano de lija y curado en envase. No limpiar con paño húmedo antes de 2 semanas. La estimación de 3–4 manos del párrafo anterior era preliminar; prevalecen las indicaciones de este producto.
 
 ## 11. Notas abiertas (no inventes: muéstralas como avisos en la página)
 
@@ -216,3 +222,5 @@ Herramientas que se asumen: sierra circular, taladro, serrucho, escuadra, broca 
 - Los 12 pasos están completos, con piezas resaltadas.
 - Se usa sin problemas a 360 px de ancho, con gestos táctiles, y no requiere conexión aparte del CDN.
 - Ninguna medida se inventa: todo sale de este archivo.
+
+Nota de actualización de patines: los valores f=1,8 cm y rango1,8–3cm del modelo siguen siendo referencias geométricas, no especificaciones del producto nuevo. Confirmar la altura instalada y su fijación compatible con madera de18mm antes de perforar. No cambiar cortes de tableros a partir del alto total38mm de la ficha.

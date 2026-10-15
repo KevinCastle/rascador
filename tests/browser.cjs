@@ -59,7 +59,7 @@ async function setRange(page,id,value){await page.locator(id).fill(String(value)
   for(const name of ['front','top','side','iso'])await page.locator('[data-view="'+name+'"]').click();
   await page.locator('#dimensions').click();
   await page.locator('[data-tab="materials"]').click();
-  assert.match(await page.locator('#budget-total').innerText(),/190.307/);
+  assert.match(await page.locator('#budget-total').innerText(),/102.460/);
   await page.locator('[data-tab="steps"]').click();
   await page.evaluate(()=>GuideApp.selectStep(0));
   await page.setViewportSize({width:360,height:800});
