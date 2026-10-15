@@ -79,7 +79,7 @@ async function setRange(page,id,value){await page.locator(id).fill(String(value)
   await page.screenshot({path:'tests/screenshots/mobile-dark.png',fullPage:true});
   assert.deepEqual(errors,[]);
   const fallback=await browser.newPage({viewport:{width:360,height:800}});
-  await fallback.route('https://**/*',r=>r.abort());
+  await fallback.route(/^https:\/\/(cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net)\//,r=>r.abort());
   await fallback.goto(url);
   await fallback.waitForFunction(()=>document.querySelector('#fallback-title')?.textContent==='La guía sigue contigo.');
   await fallback.locator('#next-step').click();

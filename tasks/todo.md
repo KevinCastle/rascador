@@ -42,12 +42,18 @@ Sin harness existente: no hay `package.json` ni comando `harness:audit` aplicabl
 - Revisión independiente: sin hallazgos pendientes tras corregir giro/explosión.
 - Inspección visual detectó y corrigió colores demasiado claros; se ajustaron conversión sRGB e iluminación.
 - Encuadre automático verificado con capturas de despiece completo en escritorio y360px. Suite final de navegador PASS, incluyendo giro y explosión simultáneos; espera al fin exacto de la animación antes de medir posiciones.
-- Límites: pruebas con viewport móvil en Chromium, no con teléfono físico ni Safari; no se verifica construcción, resistencia, fijaciones ni precios actuales. La página no está publicada.
+- Límites: pruebas con viewport móvil en Chromium, no con teléfono físico ni Safari; no se verifica construcción, resistencia, fijaciones ni precios actuales. La publicación posterior se registra abajo.
 
 ## Publicación en GitHub Pages
 
 - [x] Cuenta personal autenticada: KevinCastle. Nombre propuesto disponible: rascador.
 - [x] Preparar `.nojekyll`, exclusión de capturas generadas y documentación de publicación desde main/root.
 - [x] Obtener excepción explícita a la regla global de no crear commits para el commit inicial y confirmar repositorio público. El usuario autorizó crear commits y aceptó el nombre del repositorio.
-- [ ] Crear repositorio, subir el proyecto y activar GitHub Pages.
-- [ ] Comprobar despliegue y respuesta HTTP del sitio publicado.
+- [x] Crear repositorio, subir el proyecto y activar GitHub Pages.
+- [x] Comprobar despliegue y respuesta HTTP del sitio publicado.
+
+Repositorio público: https://github.com/KevinCastle/rascador
+
+Sitio: https://kevincastle.github.io/rascador/
+
+Verificación del 15 de octubre de 2026: despliegue inicial exitoso (run38792694525), respuesta HTTP200 y suite completa de navegador PASS contra la URL pública (PC,360px,12pasos,parámetros,tapa/despiece,capas,cotas,presupuesto,teclado,modo oscuro y fallback de CDN). Datos4/4 PASS. El test de fallback bloquea únicamente los dos CDN para permitir verificar también una URL alojada mediante HTTPS.
