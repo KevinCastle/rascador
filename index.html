@@ -7,15 +7,16 @@
 @media(prefers-color-scheme:dark){:root{--bg:#20241e;--paper:#282d25;--ink:#ecebe1;--muted:#a6ad9c;--line:#414839;--accent:#b2c29a;--soft:#343e2f;--warm:#bd986d;--warn:#393529;--viewer:#2c3429;--shadow:none}.primary,button[aria-pressed="true"]{color:#20271b;background:#b2c29a}.live-chip:before{background:#b2c29a}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 .piece-picker{margin-bottom:24px;padding:16px;border:1px solid var(--line);border-radius:9px;background:var(--bg)}.piece-picker label{display:block;font-size:12px;font-weight:700;margin-bottom:8px}.piece-picker select{width:100%;min-height:44px;border:1px solid var(--line);border-radius:7px;padding:9px;background:var(--paper);color:var(--ink)}#piece-info{font-size:12px;margin-top:13px}#piece-info p:last-child{margin-bottom:0}.piece-button{padding:7px 10px;font-size:11px;text-align:left}.piece-button[aria-pressed="true"]{background:var(--soft);color:var(--accent)}.viewer-jump{display:inline-flex;align-items:center;min-height:44px;font-size:12px;margin-top:4px}.viewer-note{position:absolute;z-index:2;top:60px;left:23px;right:23px;font-size:11px;line-height:1.5;pointer-events:none;color:var(--ink)}.viewer-note span{display:inline-block;max-width:100%;background:var(--paper);border:1px solid var(--line);padding:6px 9px;border-radius:6px}.viewer-note[hidden]{display:none}.dryfit-controls{margin:18px 0}.dryfit-controls p{font-size:11px;color:var(--muted);margin:8px 0}.viewer-footer strong{line-height:1.5}.dimension.part-label{font-size:10px;max-width:160px;text-align:center;white-space:normal}.dimension[hidden]{display:none}.viewer:focus{outline:none}@media(max-width:800px){.viewer-note{top:48px;left:14px;right:14px;font-size:10px}.viewer-footer strong{max-width:230px}.viewer-footer{align-items:center}.viewer-footer button{flex-shrink:0}.dimension.part-label{font-size:9px;max-width:115px}.piece-picker{padding:13px}.viewer-jump{font-size:11px}}
+.piece-measure-controls{margin-top:14px}.piece-measure-controls button{width:100%;font-size:12px}.piece-detail-control{margin-top:13px}.piece-measure-controls[hidden],.piece-detail-control[hidden]{display:none}#piece-dimensions{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden;color:var(--accent)}#piece-dimensions[hidden]{display:none}.piece-dimension-line,.piece-dimension-extension,.piece-dimension-leader{fill:none;stroke:currentColor;stroke-width:1.25}.piece-dimension-extension{opacity:.55;stroke-width:1}.piece-dimension-label{font:600 11px Arial,Helvetica,sans-serif;fill:var(--ink);text-anchor:middle;dominant-baseline:middle}.piece-dimension-back{fill:var(--paper);stroke:var(--line);stroke-width:1}@media(max-width:800px){.piece-dimension-label{font-size:10px}}
 </style></head><body>
-<header class="site-header"><div class="brand"><div class="brand-mark" aria-hidden="true">m.</div><div><div class="eyebrow">Hecho por ti · pensado para ella</div><h1>Un lugar para ella.</h1><div class="fine">Banca de balcón con arenero y rascador</div></div></div><div class="header-note"><span class="eyebrow">Guía de armado</span><br>Un proyecto, pieza por pieza.<br><span class="muted">12 pasos · todas las medidas en cm</span></div></header>
-<main class="workspace"><section class="viewer" id="viewer" tabindex="-1" aria-label="Modelo tridimensional de la banca"><div class="viewer-head"><span class="eyebrow">Tu proyecto en perspectiva</span><span class="live-chip" id="model-status">MODELO 3D</span></div><div id="stage"><div class="fallback" id="fallback" role="status"><div class="fallback-inner"><div class="fallback-icon" aria-hidden="true">◇</div><strong id="fallback-title">Preparando tu modelo…</strong><p id="fallback-text">Las instrucciones y las medidas ya están disponibles en el panel.</p></div></div></div><div class="viewer-note" id="viewer-note" role="status" hidden><span></span></div><div class="view-tools" role="group" aria-label="Vistas del modelo"><button data-view="iso" aria-pressed="true">Isométrica</button><button data-view="front" aria-pressed="false">Frontal</button><button data-view="top" aria-pressed="false">Planta</button><button data-view="side" aria-pressed="false">Lateral</button></div><div class="viewer-footer"><div><strong id="model-caption">Vista general · conoce las piezas</strong><small>Arrastra para girar · pellizca o usa la rueda para acercar</small></div><button id="lid-button" aria-pressed="false">Abrir tapa ↗</button></div></section>
+<header class="site-header"><div class="brand"><div class="brand-mark" aria-hidden="true">m.</div><div><div class="eyebrow">Hecho por ti · pensado para ella</div><h1>Un lugar para ella.</h1><div class="fine">Banca de balcón con arenero y rascador</div></div></div><div class="header-note"><span class="eyebrow">Guía de armado</span><br>Un proyecto, pieza por pieza.<br><span class="muted">12 pasos · medidas en cm, salvo indicación</span></div></header>
+<main class="workspace"><section class="viewer" id="viewer" tabindex="-1" aria-label="Modelo tridimensional de la banca"><div class="viewer-head"><span class="eyebrow">Tu proyecto en perspectiva</span><span class="live-chip" id="model-status">MODELO 3D</span></div><div id="stage"><svg id="piece-dimensions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden><defs><marker id="piece-arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8" fill="none" stroke="currentColor" stroke-width="1.4"/></marker></defs><g id="piece-dimension-items"></g></svg><div class="fallback" id="fallback" role="status"><div class="fallback-inner"><div class="fallback-icon" aria-hidden="true">◇</div><strong id="fallback-title">Preparando tu modelo…</strong><p id="fallback-text">Las instrucciones y las medidas ya están disponibles en el panel.</p></div></div></div><div class="viewer-note" id="viewer-note" role="status" hidden><span></span></div><div class="view-tools" role="group" aria-label="Vistas del modelo"><button data-view="iso" aria-pressed="true">Isométrica</button><button data-view="front" aria-pressed="false">Frontal</button><button data-view="top" aria-pressed="false">Planta</button><button data-view="side" aria-pressed="false">Lateral</button></div><div class="viewer-footer"><div><strong id="model-caption">Vista general · conoce las piezas</strong><small>Arrastra para girar · pellizca o usa la rueda para acercar</small></div><button id="lid-button" aria-pressed="false">Abrir tapa ↗</button></div></section>
 <aside class="panel" id="panel"><button class="panel-toggle" id="panel-toggle" aria-expanded="true" aria-controls="panel-body"><span>Tu guía de armado</span><span aria-hidden="true">−</span></button><div class="panel-body" id="panel-body"><nav class="tabs" role="tablist" aria-label="Secciones de la guía"><button role="tab" id="tab-steps" data-tab="steps" aria-controls="content-steps" aria-selected="true">Pasos</button><button role="tab" id="tab-model" data-tab="model" aria-controls="content-model" aria-selected="false" tabindex="-1">Modelo</button><button role="tab" id="tab-cuts" data-tab="cuts" aria-controls="content-cuts" aria-selected="false" tabindex="-1">Piezas y cortes</button><button role="tab" id="tab-materials" data-tab="materials" aria-controls="content-materials" aria-selected="false" tabindex="-1">Materiales</button></nav>
 <section id="content-steps" class="tab-panel" role="tabpanel" aria-labelledby="tab-steps"><div class="step-top"><span class="eyebrow" id="step-counter">PASO 01 / 12</span><span class="muted">De la idea al balcón</span></div><div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress"></div></div><div id="step-content" aria-live="polite"></div><div class="step-nav"><button id="prev-step">← Anterior</button><button id="next-step" class="primary">Siguiente paso →</button></div><details class="step-list"><summary>Los 12 pasos del proyecto</summary><ol id="step-list"></ol></details><div class="fine" style="margin-top:22px">Ve a <button style="border:0;background:none;padding:0;min-height:44px;color:var(--accent);font-size:11px;text-decoration:underline" data-goto="cuts">Piezas y cortes</button> para consultar el despiece antes de cortar.</div></section>
 <section id="content-model" class="tab-panel" role="tabpanel" aria-labelledby="tab-model" hidden><div class="section-header"><div class="eyebrow">A tu medida</div><h2>Explora la banca.</h2><p>Ajusta el espacio antes de cortar. Solo la antecámara cambia de ancho; el descanso y la zona de bandeja se mantienen.</p></div><div id="parameters"></div><div class="measure-grid" id="measure-grid"></div><div id="fit-warnings" aria-live="polite"></div><div class="control-block"><div class="range-label"><label for="explode">Separación de las piezas</label><output id="explode-value" for="explode">0 %</output></div><input type="range" id="explode" min="0" max="100" value="0"><div class="range-limits"><span>Armado</span><span>Vista explotada</span></div><div class="button-row"><button id="transparent" aria-pressed="false">Ver el interior</button><button id="dimensions" aria-pressed="false">Mostrar cotas</button></div></div><div class="control-block"><h3>Capas del modelo</h3><div class="toggle-grid" id="layers"></div><label class="check"><input type="checkbox" id="optional-brace"> Incluir L04 · respaldo opcional</label></div><div class="callout"><strong>Antes de instalar la tapa</strong><p>Las bisagras simples no la sostienen abierta. El plan contempla apoyo contra el muro: comprueba el montaje y el despeje real al armar en seco. Los 95° del modelo son ilustrativos; no se representa un muro físico.</p></div><details class="step-list"><summary>Medidas y decisiones pendientes</summary><div class="small"><p>La base del rascador ocupa 31 × 31; su grosor y construcción se desconocen. En el modelo se muestra solo su huella plana. Verifica el largo de los pernos: 6,3 cm solo alcanzan con una base de hasta aproximadamente 1,7 cm.</p><p>Se asumen 1 cm de espesor de alfombra, bandeja centrada en el fondo junto al tabique y postes cilíndricos. Confirma las medidas de tus productos.</p><p>El diseño no incluye un cálculo de resistencia ni una carga admisible verificada. Revisa las uniones y el soporte antes de usarlo como asiento.</p></div></details></section>
-<section id="content-cuts" class="tab-panel" role="tabpanel" aria-labelledby="tab-cuts" hidden><div class="section-header"><div class="eyebrow">Mide dos veces</div><h2>Cada pieza cuenta.</h2><p>Despiece actualizado con tus parámetros. Medidas de corte en cm, antes de descontar el ancho de la sierra.</p></div><div class="piece-picker"><label for="piece-select">Inspeccionar una pieza en 3D</label><select id="piece-select"></select><div id="piece-info" aria-live="polite"></div><a class="viewer-jump" href="#viewer">Ver esta pieza en 3D ↑</a></div><div id="cuts-content"></div><div class="callout"><strong>Deja espacio para la sierra</strong><p>Considera aproximadamente 3 mm por corte y mide la plancha real antes de trazar. No cambies las medidas finales de las piezas. La veta exterior corre a lo largo de los 244 cm.</p></div><details class="step-list" open><summary>Ubicación de los cortes frontales</summary><div id="front-cuts"></div></details><details class="step-list"><summary>Otras piezas del conjunto</summary><div id="other-parts" class="small"></div></details></section>
+<section id="content-cuts" class="tab-panel" role="tabpanel" aria-labelledby="tab-cuts" hidden><div class="section-header"><div class="eyebrow">Mide dos veces</div><h2>Cada pieza cuenta.</h2><p>Despiece actualizado con tus parámetros. Medidas de corte en cm, antes de descontar el ancho de la sierra.</p></div><div class="piece-picker"><label for="piece-select">Inspeccionar una pieza en 3D</label><select id="piece-select"></select><div id="piece-info" aria-live="polite"></div><div id="piece-measure-controls" class="piece-measure-controls" hidden><button id="piece-dimensions-toggle" aria-pressed="true" aria-controls="piece-dimensions">Ocultar cotas de la pieza</button><div id="piece-detail-control" class="piece-detail-control" hidden><label for="piece-detail-select">Medidas del frente</label><select id="piece-detail-select"><option value="overall">Medidas generales</option><option value="entries">Entradas</option><option value="slot">Ranura</option><option value="vents">Ventilación</option></select></div></div><a class="viewer-jump" href="#viewer">Ver esta pieza en 3D ↑</a></div><div id="cuts-content"></div><div class="callout"><strong>Deja espacio para la sierra</strong><p>Considera aproximadamente 3 mm por corte y mide la plancha real antes de trazar. No cambies las medidas finales de las piezas. La veta exterior corre a lo largo de los 244 cm.</p></div><details class="step-list" open><summary>Ubicación de los cortes frontales</summary><div id="front-cuts"></div></details><details class="step-list"><summary>Otras piezas del conjunto</summary><div id="other-parts" class="small"></div></details></section>
 <section id="content-materials" class="tab-panel" role="tabpanel" aria-labelledby="tab-materials" hidden><div class="section-header"><div class="eyebrow">Antes de empezar</div><h2>Todo a mano.</h2><p>Materiales y productos del presupuesto aportado. Los precios y la disponibilidad no se han verificado.</p></div><div class="budget-total"><div><span class="eyebrow">Subtotal con precio</span><div class="fine">CLP · cojín y velcro por cotizar</div></div><strong id="budget-total"></strong></div><div class="table-wrap"><table><thead><tr><th>Material / cantidad</th><th class="price">Total CLP</th></tr></thead><tbody id="materials-list"></tbody></table></div><div class="callout"><strong>La lista de compra requiere revisión</strong><p>El presupuesto suma $190.307; el total escrito en el documento original difiere de la suma de sus filas. No incluye cojín, velcro ni posibles tuercas ciegas adicionales. Bandeja, alfombra y rascador se consideran elementos existentes; no tienen precio en este presupuesto.</p></div><details class="step-list" open><summary>Herramientas que necesitas</summary><p class="small">Sierra circular con guía recta, taladro, serrucho, escuadra, broca de pala de Ø20 mm y brocas guía de 3 y 4 mm. Usa lentes, mascarilla y guantes al cortar y lijar.</p></details></section>
-</div></aside></main><footer class="page-foot">Diseña con calma. Mide en tu balcón. Arma pieza por pieza. <span aria-hidden="true">·</span> Todas las medidas están en centímetros.</footer>
+</div></aside></main><footer class="page-foot">Diseña con calma. Mide en tu balcón. Arma pieza por pieza. <span aria-hidden="true">·</span> Medidas en centímetros, salvo indicación.</footer>
 <script id="guide-data">
 (function(){
 function derive(W=135,D=49,f=1.8){return {width:W,depth:D+1,height:Number((f+45).toFixed(1)),anteroom:W-89.5,interiorDepth:D-3,cushion:[W-38.5,D-1,5.5],cuts:[{id:'P01',name:'Base',thickness:18,size:[W,D]},{id:'P02',name:'Pared trasera',thickness:15,size:[W,41.4]},{id:'P03',name:'Pared frontal',thickness:15,size:[W,41.4]},{id:'P04',name:'Lateral izquierdo',thickness:15,size:[D-3,41.4]},{id:'P05',name:'Lateral derecho',thickness:15,size:[D-3,41.4]},{id:'P06',name:'Tabique',thickness:15,size:[D-3,41.4]},{id:'P07',name:'Parte fija',thickness:18,size:[37,D+1]},{id:'P08',name:'Refuerzo',thickness:18,size:[33,33]},{id:'P09',name:'Tapa articulada',thickness:18,size:[W-37.5,D+1]},{id:'P10',name:'Repisa',thickness:18,size:[34,18]}]};}
@@ -40,9 +41,9 @@ globalThis.Guide={derive,steps,materials};
 <script>
 (function(){'use strict';
 const $=id=>document.getElementById(id),fmt=n=>Number(n.toFixed(2)).toLocaleString('es-CL'),money=n=>'$'+n.toLocaleString('es-CL'),{derive,steps,materials}=Guide;
-const state={W:135,D:49,f:1.8,step:0,tab:'steps',explode:0,transparent:false,dimensions:false,lidOpen:false,angle:0,piece:'P01',dryDisassembled:false,stepLidOpen:false,optional:false,layers:{structure:true,lid:true,cushion:true,scratcher:true,tray:true,cleats:true}};
+const state={W:135,D:49,f:1.8,step:0,tab:'steps',explode:0,transparent:false,dimensions:false,lidOpen:false,angle:0,piece:'P01',pieceDimensions:true,pieceDetail:'overall',dryDisassembled:false,stepLidOpen:false,optional:false,layers:{structure:true,lid:true,cushion:true,scratcher:true,tray:true,cleats:true}};
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let scene,camera,renderer,controls,model,lidPivot,parts=[],labels=[],view='iso',ready=false,lastTime=0,guidedAngle=0;
+let scene,camera,renderer,controls,model,lidPivot,parts=[],labels=[],pieceDimensions=[],view='iso',ready=false,lastTime=0,guidedAngle=0;
 const shellIds=['P01','P02','P03','P04','P05','P06','F01','F02','F03','F04','F05','F06'];
 const shelfIds=['L01','L02','L03','P10'];
 const topIds=['P07','P08'];
@@ -65,7 +66,7 @@ function updatePieceInfo(){
 }
 function selectPiece(id){
   if(!pieceSpecs().some(p=>p.id===id))return;
-  state.piece=id;updatePieceInfo();
+  state.piece=id;state.pieceDetail='overall';$('piece-detail-select').value='overall';updatePieceInfo();
   if(state.tab!=='cuts')selectTab('cuts');
   else {applySceneMode();setView(id==='P03'?'front':'iso')}
 }
@@ -135,7 +136,7 @@ const center=111.5+(state.W-135)/2;$('front-cuts').innerHTML=`<div class="small"
 $('other-parts').innerHTML=`<p>Interior: descanso 34; bandeja 51; antecámara ${fmt(d.anteroom)}. Fondo libre ${fmt(d.interiorDepth)}; altura libre 41,4.</p><p>Cojín C01: ${d.cushion.map(fmt).join(' × ')}. Altura de asiento aproximada: ${fmt(d.height+5.5)}.</p><p>R01 · bandeja: 50 × 41 × 28; lado bajo de 18 hacia la antecámara. R02 · alfombra: 66 × 46 × 1 (espesor asumido).</p><p>R03 · rascador: huella de base 31 × 31, grosor sin definir; dos postes bajos Ø8 × 30, plataforma de 35 × 35 × 2, poste alto Ø8 × 30 y plataforma superior de 35 × 35 × 2. Alto total: 64.</p><p>F01–F06 · seis patas Ø4 × ${fmt(state.f)}. H01–H03 · bisagras simples de 7,6 × 7,6; representación visual de 0,3 de espesor.</p>`;updatePieceInfo();document.querySelectorAll('[data-piece]').forEach(b=>b.onclick=()=>selectPiece(b.dataset.piece));selectStep(state.step);
 }
 function nestingRects(){let x=0;return [[state.W-37.5,state.D+1,'P09'],[37,state.D+1,'P07'],[33,33,'P08'],[34,18,'P10']].map(([w,h,id],i)=>{const left=x;x+=w+.3;return `<rect x="${left}" y="${state.D+.3}" width="${w}" height="${h}" fill="${i%2?'#aab89c':'#c4cdb9'}"/><text x="${left+4}" y="${state.D+.3+Math.min(h/2,20)}" font-size="7">${id}</text>`}).join('')}
-function bindEvents(){$('piece-select').onchange=e=>selectPiece(e.target.value);document.querySelectorAll('[data-tab]').forEach(b=>{b.onclick=()=>selectTab(b.dataset.tab);b.onkeydown=e=>{const tabs=[...document.querySelectorAll('[data-tab]')],i=tabs.indexOf(b);let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();selectTab(tabs[n].dataset.tab,true)}}});document.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>selectStep(Number(b.dataset.step)));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>selectTab(b.dataset.goto));$('prev-step').onclick=()=>selectStep(state.step-1);$('next-step').onclick=()=>selectStep(state.step+1);$('panel-toggle').onclick=()=>{const collapsed=$('panel').classList.toggle('collapsed');$('panel-toggle').setAttribute('aria-expanded',!collapsed);$('panel-toggle').lastElementChild.textContent=collapsed?'+':'−'};document.querySelectorAll('[data-param]').forEach(input=>input.oninput=()=>{state[input.dataset.param]=Number(input.value);updateData();if(ready)buildModel()});$('explode').oninput=e=>{state.explode=Number(e.target.value)/100;$('explode-value').textContent=e.target.value+' %';applySceneMode()};$('transparent').onclick=()=>{state.transparent=!state.transparent;$('transparent').setAttribute('aria-pressed',state.transparent);updateAppearance()};$('dimensions').onclick=()=>{state.dimensions=!state.dimensions;$('dimensions').setAttribute('aria-pressed',state.dimensions);$('dimensions').textContent=state.dimensions?'Ocultar cotas':'Mostrar cotas';updateLabels()};document.querySelectorAll('[data-layer]').forEach(input=>input.onchange=()=>{state.layers[input.dataset.layer]=input.checked;updateAppearance()});$('optional-brace').onchange=e=>{state.optional=e.target.checked;updateAppearance()};document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));$('lid-button').onclick=()=>{if(isFreeMode())state.lidOpen=!state.lidOpen;else state.stepLidOpen=!state.stepLidOpen;updateCaption()};}
+function bindEvents(){$('piece-dimensions-toggle').onclick=()=>{state.pieceDimensions=!state.pieceDimensions;updatePieceDimensionControls();updatePieceDimensions()};$('piece-detail-select').onchange=e=>{state.pieceDetail=e.target.value;makePieceDimensions();updateCaption();updatePieceDimensions()};$('piece-select').onchange=e=>selectPiece(e.target.value);document.querySelectorAll('[data-tab]').forEach(b=>{b.onclick=()=>selectTab(b.dataset.tab);b.onkeydown=e=>{const tabs=[...document.querySelectorAll('[data-tab]')],i=tabs.indexOf(b);let n;if(e.key==='ArrowRight')n=(i+1)%tabs.length;if(e.key==='ArrowLeft')n=(i+tabs.length-1)%tabs.length;if(e.key==='Home')n=0;if(e.key==='End')n=tabs.length-1;if(n!==undefined){e.preventDefault();selectTab(tabs[n].dataset.tab,true)}}});document.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>selectStep(Number(b.dataset.step)));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>selectTab(b.dataset.goto));$('prev-step').onclick=()=>selectStep(state.step-1);$('next-step').onclick=()=>selectStep(state.step+1);$('panel-toggle').onclick=()=>{const collapsed=$('panel').classList.toggle('collapsed');$('panel-toggle').setAttribute('aria-expanded',!collapsed);$('panel-toggle').lastElementChild.textContent=collapsed?'+':'−'};document.querySelectorAll('[data-param]').forEach(input=>input.oninput=()=>{state[input.dataset.param]=Number(input.value);updateData();if(ready)buildModel()});$('explode').oninput=e=>{state.explode=Number(e.target.value)/100;$('explode-value').textContent=e.target.value+' %';applySceneMode()};$('transparent').onclick=()=>{state.transparent=!state.transparent;$('transparent').setAttribute('aria-pressed',state.transparent);updateAppearance()};$('dimensions').onclick=()=>{state.dimensions=!state.dimensions;$('dimensions').setAttribute('aria-pressed',state.dimensions);$('dimensions').textContent=state.dimensions?'Ocultar cotas':'Mostrar cotas';updateLabels()};document.querySelectorAll('[data-layer]').forEach(input=>input.onchange=()=>{state.layers[input.dataset.layer]=input.checked;updateAppearance()});$('optional-brace').onchange=e=>{state.optional=e.target.checked;updateAppearance()};document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));$('lid-button').onclick=()=>{if(isFreeMode())state.lidOpen=!state.lidOpen;else state.stepLidOpen=!state.stepLidOpen;updateCaption()};}
 
 function material(color){
   return new THREE.MeshStandardMaterial({
@@ -230,7 +231,7 @@ function guidedIds(){
   return ids;
 }
 function applySceneMode(){
-  updateCaption();
+  updateCaption();updatePieceDimensionControls();
   if(!ready)return;
   const free=isFreeMode(),cuts=state.tab==='cuts',ids=cuts?[state.piece]:guidedIds();
   const separated=state.tab==='steps'&&[1,3,4].includes(state.step);
@@ -258,6 +259,7 @@ function applySceneMode(){
   else if(state.step===5&&state.dryDisassembled)parts.forEach(p=>{if(/^P0[2-6]$/.test(p.name))p.position.addScaledVector(p.userData.explode,.8)});
   else if(state.step===9){const lid=parts.find(p=>p.name==='P09');lid.position.x+=state.W-25.5}
   makeLabels();
+  makePieceDimensions();
   frameModel();
 }
 function makeLabels(){
@@ -280,8 +282,121 @@ function makeLabels(){
   }
   updateLabels();
 }
+function updatePieceDimensionControls(){
+  $('piece-measure-controls').hidden=!ready||state.tab!=='cuts';
+  $('piece-detail-control').hidden=state.piece!=='P03';
+  $('piece-detail-select').disabled=!state.pieceDimensions;
+  const button=$('piece-dimensions-toggle');
+  button.setAttribute('aria-pressed',state.pieceDimensions);
+  button.textContent=state.pieceDimensions?'Ocultar cotas de la pieza':'Mostrar cotas de la pieza';
+}
+function makePieceDimensions(){
+  const root=$('piece-dimension-items');root.replaceChildren();pieceDimensions=[];
+  if(!ready||state.tab!=='cuts')return;
+  const part=parts.find(p=>p.visible&&p.name===state.piece),spec=selectedPiece();
+  if(!part)return;
+  part.geometry.computeBoundingBox();
+  const bounds=part.geometry.boundingBox;
+  const svgNode=(tag,attrs={})=>{const node=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));return node};
+  const add=(value,text,axis,a,b)=>{
+    const group=svgNode('g',{'class':'piece-dimension','data-value':value});
+    const extension=svgNode('path',{'class':'piece-dimension-extension'});
+    const line=svgNode('path',{'class':'piece-dimension-line','marker-start':'url(#piece-arrow)','marker-end':'url(#piece-arrow)'});
+    const leader=svgNode('path',{'class':'piece-dimension-leader'});
+    const back=svgNode('rect',{'class':'piece-dimension-back',rx:4});
+    const label=svgNode('text',{'class':'piece-dimension-label'});label.textContent=text;
+    group.append(extension,line,leader,back,label);root.append(group);
+    pieceDimensions.push({part,bounds,axis,a:a&&new THREE.Vector3(...a),b:b&&new THREE.Vector3(...b),group,extension,line,leader,back,label});
+  };
+  if(spec.id==='P03'&&state.pieceDetail!=='overall'){
+    if(state.pieceDetail==='entries'){
+      add(25,'25 cm · 2 iguales',null,[6,30,1.5],[31,30,1.5]);
+      add(30,'30 cm',null,[31,0,1.5],[31,30,1.5]);
+    }else if(state.pieceDetail==='slot'){
+      add(12,'12 cm',null,[57,41.4,1.5],[69,41.4,1.5]);
+      add(3,'3 cm',null,[69,38.4,1.5],[69,41.4,1.5]);
+    }else add(20,'6 × Ø20 mm',null,[50,6,1.5],[52,6,1.5]);
+  }else{
+    // Axes are local to each mesh; values remain the actual cut sizes while orbiting.
+    let axes;
+    if(['P02','P03'].includes(spec.id))axes=['x','y','z'];
+    else if(['P04','P05','P06'].includes(spec.id))axes=['z','y','x'];
+    else if(['L01','L03'].includes(spec.id))axes=['z','x','y'];
+    else axes=['x','z','y'];
+    const values=spec.id[0]==='L'?spec.size:[...spec.size,spec.thickness/10];
+    axes.forEach((axis,i)=>add(values[i],spec.id[0]==='P'&&i===2?spec.thickness+' mm':fmt(values[i])+' cm',axis));
+  }
+  updatePieceDimensions();
+}
+function updatePieceDimensions(){
+  const svg=$('piece-dimensions');
+  const hidden=!ready||state.tab!=='cuts'||!state.pieceDimensions;
+  svg.toggleAttribute('hidden',hidden);
+  if(hidden||!pieceDimensions.length)return;
+  const stage=$('stage').getBoundingClientRect(),w=stage.width,h=stage.height;
+  if(!w||!h)return;
+  svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  const note=$('viewer-note').getBoundingClientRect(),tools=document.querySelector('.view-tools').getBoundingClientRect();
+  const safe={left:12,right:w-12,top:Math.max(65,note.bottom-stage.top+12),bottom:Math.min(h-12,tools.top-stage.top-12)};
+  const placed=[];
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  const point=(part,p)=>{const world=p.clone().applyMatrix4(part.matrixWorld).project(camera);return {x:(world.x+1)*w/2,y:(1-world.y)*h/2,z:world.z}};
+  const path=(a,b)=>'M'+a.x.toFixed(2)+' '+a.y.toFixed(2)+' L'+b.x.toFixed(2)+' '+b.y.toFixed(2);
+  model.updateMatrixWorld(true);
+  pieceDimensions.forEach((dimension,index)=>{
+    const {part,bounds,axis,group,extension,line,leader,back,label}=dimension;
+    const center=point(part,bounds.getCenter(new THREE.Vector3()));
+    let a,b;
+    if(axis){
+      const other=['x','y','z'].filter(key=>key!==axis);
+      let best=-Infinity;
+      for(const first of ['min','max'])for(const second of ['min','max']){
+        const start=bounds.min.clone(),end=bounds.min.clone();
+        start[other[0]]=end[other[0]]=bounds[first][other[0]];
+        start[other[1]]=end[other[1]]=bounds[second][other[1]];
+        end[axis]=bounds.max[axis];
+        const p=point(part,start),q=point(part,end),mx=(p.x+q.x)/2,my=(p.y+q.y)/2;
+        const score=Math.hypot(mx-center.x,my-center.y)+Math.hypot(q.x-p.x,q.y-p.y)*.05;
+        if(score>best){best=score;a=p;b=q}
+      }
+    }else{a=point(part,dimension.a);b=point(part,dimension.b)}
+    const outside=Math.abs(a.z)>1||Math.abs(b.z)>1;
+    group.style.display=outside?'none':'';if(outside)return;
+    const dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy),mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+    let normal={x:length>.5?-dy/length:1,y:length>.5?dx/length:0};
+    if(normal.x*(mid.x-center.x)+normal.y*(mid.y-center.y)<0){normal.x*=-1;normal.y*=-1}
+    // Near-edge-on dimensions use a leader so a 15 mm board never gains a false visual length.
+    const short=length<36,offset=short?0:23;
+    const from={x:a.x+normal.x*offset,y:a.y+normal.y*offset},to={x:b.x+normal.x*offset,y:b.y+normal.y*offset};
+    extension.setAttribute('d',short?'':path(a,{x:from.x+normal.x*5,y:from.y+normal.y*5})+' '+path(b,{x:to.x+normal.x*5,y:to.y+normal.y*5}));
+    line.setAttribute('d',length<1?'':path(from,to));
+    for(const marker of ['marker-start','marker-end']){
+      if(short)line.removeAttribute(marker);else line.setAttribute(marker,'url(#piece-arrow)');
+    }
+    if(short)leader.setAttribute('marker-start','url(#piece-arrow)');else leader.removeAttribute('marker-start');
+    const width=Math.ceil(label.getComputedTextLength())+16,height=24;
+    const preferred={x:mid.x+normal.x*(short?55:43),y:mid.y+normal.y*(short?45:43)};
+    const candidates=[preferred];
+    for(const shift of [28,-28,56,-56])candidates.push({x:preferred.x+normal.y*shift,y:preferred.y-normal.x*shift});
+    candidates.push({x:center.x,y:safe.top+height/2+index*28},{x:center.x,y:safe.bottom-height/2-index*28});
+    let chosen,score=Infinity;
+    candidates.forEach(candidate=>{
+      const x=clamp(candidate.x,safe.left+width/2,safe.right-width/2),y=clamp(candidate.y,safe.top+height/2,safe.bottom-height/2);
+      const rect={x:x-width/2,y:y-height/2,width,height};
+      const overlap=placed.reduce((sum,r)=>sum+(rect.x<r.x+r.width+5&&rect.x+width+5>r.x&&rect.y<r.y+r.height+5&&rect.y+height+5>r.y?10000:0),0);
+      const cost=overlap+Math.hypot(x-preferred.x,y-preferred.y);
+      if(cost<score){score=cost;chosen={x,y,rect}}
+    });
+    placed.push(chosen.rect);
+    label.setAttribute('x',chosen.x);label.setAttribute('y',chosen.y+1);
+    Object.entries(chosen.rect).forEach(([key,value])=>back.setAttribute(key,value));
+    const lineMid={x:(from.x+to.x)/2,y:(from.y+to.y)/2};
+    leader.setAttribute('d',short||Math.hypot(chosen.x-lineMid.x,chosen.y-lineMid.y)>28?path(lineMid,chosen):'');
+  });
+}
 function updateLabels(){
   if(!ready)return;
+  updatePieceDimensions();
   labels.forEach(l=>{
     l.el.hidden=l.kind==='dimension'&&!state.dimensions;
     if(l.el.hidden)return;
@@ -342,7 +457,7 @@ function setView(name){
   frameModel();
 }
 
-function fallback(message){$('fallback').hidden=false;$('fallback').style.display='flex';$('fallback-title').textContent='La guía sigue contigo.';$('fallback-text').textContent=message+' Puedes usar todos los pasos, medidas y materiales del panel.';$('model-status').textContent='GUÍA DISPONIBLE';$('lid-button').disabled=true;document.querySelectorAll('[data-view]').forEach(b=>b.disabled=true)}
+function fallback(message){$('piece-measure-controls').hidden=true;$('piece-dimensions').setAttribute('hidden','');$('fallback').hidden=false;$('fallback').style.display='flex';$('fallback-title').textContent='La guía sigue contigo.';$('fallback-text').textContent=message+' Puedes usar todos los pasos, medidas y materiales del panel.';$('model-status').textContent='GUÍA DISPONIBLE';$('lid-button').disabled=true;document.querySelectorAll('[data-view]').forEach(b=>b.disabled=true)}
 function init3D(){try{if(!globalThis.THREE||!THREE.OrbitControls)throw new Error('CDN');scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(37,1,.1,1500);renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;$('stage').prepend(renderer.domElement);renderer.domElement.setAttribute('aria-label','Modelo 3D: usa el ratón o gestos táctiles para girar y acercar');renderer.domElement.setAttribute('role','img');renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();ready=false;fallback('La vista 3D perdió su contexto gráfico.')});controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=!reducedMotion;controls.dampingFactor=.08;controls.minDistance=2;controls.maxDistance=1200;controls.maxPolarAngle=Math.PI*.96;scene.add(new THREE.HemisphereLight(0xfffaf0,0x66705d,.9));const light=new THREE.DirectionalLight(0xffffff,1.15);light.position.set(30,170,100);scene.add(light);const fill=new THREE.DirectionalLight(0xffffff,.35);fill.position.set(-100,70,-70);scene.add(fill);ready=true;$('fallback').style.display='none';buildModel();setView(view);const resize=()=>{const r=$('stage').getBoundingClientRect();renderer.setSize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();frameModel()};new ResizeObserver(resize).observe($('stage'));resize();requestAnimationFrame(animate)}catch(e){fallback(e.message==='CDN'?'No se pudieron cargar las librerías del modelo. Revisa tu conexión para ver el 3D.':'Tu navegador no pudo iniciar la vista WebGL.')}}
 function animate(time){
   if(!ready)return;

@@ -77,3 +77,21 @@ Criterios: piezas futuras ausentes; contexto previamente montado visible; resalt
 Validación local de esta mejora: pruebas de datos4/4 PASS; suite original de navegador PASS; nueva suite de armado PASS (14piezas, frente sin/con cortes, L03 de18cm, prueba en seco, capas/apertura independientes, medidas y navegación360px). Revisión independiente sin defectos importantes. Se corrigieron según capturas el ángulo de las vistas interiores, el resaltado y la superposición de etiquetas; prueba automática de etiquetas sin solapamientos en escritorio y360px.
 
 Publicación de vistas guiadas: commit17c3e24; GitHub Pages run38798091315 SUCCESS. Suite de armado ejecutada contra https://kevincastle.github.io/rascador/: PASS, incluidos escritorio/360px, etiquetas sin superposición y las14piezas aisladas.
+
+## Cotas flotantes de piezas
+
+Solicitud: mostrar tamaños con flechas sobre la pieza que se inspecciona.
+
+Alcance: `index.html` (cotas SVG vinculadas a la geometría, controles del detalle frontal y adaptación móvil), `tests/dimensions.browser.cjs`, README y este registro. Reutilizar Three.js y los datos actuales, sin dependencias nuevas.
+
+- [x] Inspeccionar geometría, cámara y etiquetas existentes; presentar el enfoque.
+- [x] Añadir tres cotas de dimensiones reales por pieza, visibles por defecto en Piezas y cortes, con flechas y unidades.
+- [x] Añadir detalle seleccionable del frente: entradas25×30cm, ranura12×3cm y6orificiosØ20mm; mantener la vista general despejada.
+- [x] Mantener anclaje al girar/acercar; actualizar parámetros y cambiar piezas sin etiquetas residuales. No bloquear gestos del visor.
+- [x] Verificar tamaños,14piezas, cambios de parámetros, órbita, vistas y legibilidad escritorio/360px; ejecutar regresiones y revisión.
+
+Aceptación: valores coherentes con el plan y geometría (L03=18cm), etiquetas dentro del visor sin solapamientos en vistas iniciales de escritorio/móvil, ausencia fuera de Piezas y cortes, lectura textual disponible si falla WebGL.
+
+Validación local: nueva suite de cotas PASS (14piezas, unidades, detalle frontal, órbita, zoom, cuatro vistas, teclado, parámetros y etiquetas sin solapamientos en1440/360px). Suites existentes de armado y navegador PASS; datos4/4 PASS; diff sin errores de espacios. Capturas inspeccionadas en claro/oscuro, incluidas P01/P03/P09/L03 y los tres detalles frontales. Revisión independiente sin hallazgos accionables. No se probó teléfono físico ni Safari.
+
+Actualización: el usuario autorizó expresamente hacer commit de los cambios. Se prepara el commit y push a main para actualizar GitHub Pages; el resultado del despliegue se comprobará antes de confirmar la publicación.
