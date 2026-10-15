@@ -23,6 +23,8 @@ for(const dims of [[135,49,1.8],[120,45,3],[136,53,1.8],[134,50,2.4]]){
     assert.ok(Math.min(...glue.size)<=.05,'La cola representa una película');
    }
    for(const screw of detail.fasteners){
+    assert.ok(detail.origin?.length===3,'Cada detalle debe indicar el origen en el mueble');
+    assert.ok(add(screw.start,detail.origin).every((n,i)=>Math.abs(n-screw.globalStart[i])<1e-6),'La fijación local debe corresponder a su posición real '+detail.id+'/'+screw.id);
     const owner=detail.boards.find(b=>b.id===screw.owner),receiver=detail.boards.find(b=>b.id===screw.receiver);
     assert.ok(owner&&receiver,'Fijación sin tableros definidos');
     assert.ok(Math.abs(Math.hypot(...screw.direction)-1)<1e-8);
@@ -66,4 +68,14 @@ test('Decisiones explícitas de la repisa y bisagra, sin falsa plantilla',()=>{
  assert.match([...hinge.notes,...hinge.positions].join(' '),/95/);
  assert.ok(!details.find(d=>d.id==='fixed').fasteners.some(s=>s.receiver==='P08'),'El refuerzo se encola, no se atraviesa con40mm');
  assert.ok(shelf.fasteners.every(s=>s.owner!=='P10'),'La repisa se apoya sin agregar tornillos');
+});
+test('Base y tabique son piezas completas y conservan la posición real',()=>{
+ for(const [W,D,f] of [[135,49,1.8],[120,45,3],[136,53,1.8]]){
+  const detail=Joinery.create(W,D,f).find(d=>d.id==='base');
+  const base=detail.boards.find(b=>b.id==='P01'),divider=detail.boards.find(b=>b.id==='P06');
+  assert.deepEqual(base.size,[W,D,1.8]);assert.equal(base.cropped,false);
+  assert.deepEqual(divider.min,[35.5,1.5,1.8]);
+  assert.deepEqual(divider.size,[1.5,D-3,41.4]);assert.equal(divider.cropped,false);
+  assert.equal(divider.min[0]-1.5,34,'Descanso de34cm libres junto al lateral izquierdo');
+ }
 });

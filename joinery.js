@@ -22,17 +22,17 @@
     const cleatFromBack = cleatPoints.map(n => fmt(n + 1.5)).join(' · ');
     return [
       {
-        id: 'base', title: 'Base y tabique', steps: [5, 6],
-        summary: 'El tabique se apoya sobre la base. Los tornillos entran desde abajo, centrados en su canto de 15 mm.',
-        notes: [common, 'En el armado en seco no apliques cola. En el definitivo, extiende una película fina solo en la superficie de contacto.', 'Sujeta el tabique a escuadra y realiza una guía centrada. Un tornillo de 40 mm atraviesa los 18 mm de la base y entra 22 mm en el tabique.', 'Se muestra un tramo de la base y del tabique. Esta unión no certifica la carga del asiento.'],
-        positions: [`Centro del canto de P06: x = 36,25 cm desde el extremo izquierdo del mueble.`, `Centros de los tornillos desde el borde trasero de la base: y = ${fromBack} cm.`, 'Primero y último a 4 cm de los extremos del tabique; separación entre centros de hasta 15 cm.'],
-        boards: [board('P01', 'Base · 18 mm (tramo)', [0, 0, 0], [16, supportLength, 1.8], [0, 0, -5], true), board('P06', 'Tabique · 15 mm (tramo)', [7.25, 0, 1.8], [1.5, supportLength, 12], [0, 0, 6], true)],
-        glue: [{ owner: 'P06', min: [7.25, 0, 1.77], size: [1.5, supportLength, 0.03] }],
-        fasteners: alongSupport.map((y, i) => ({ ...screw(`B${i + 1}`, 'P01', 'P06', [8, y, 0], [0, 0, 1], 4), globalStart: [36.25, round(y + 1.5), f] })),
-        camera: [30, 40, -26]
+        id: 'base', title: 'Base y tabique', steps: [5, 6], origin: [0, 0, f],
+        summary: 'El tabique separa el descanso del arenero. Su cara izquierda empieza a 35,5 cm del extremo izquierdo de la base; queda a la izquierda del centro del mueble. Los tornillos entran desde abajo.',
+        notes: [common, 'En el armado en seco no apliques cola. En el definitivo, extiende una película fina solo en la superficie de contacto.', 'Sujeta el tabique a escuadra y realiza una guía centrada. Un tornillo de 40 mm atraviesa los 18 mm de la base y entra 22 mm en el tabique.', 'Aquí se muestran la base y el tabique completos. Entre el lateral izquierdo y el tabique quedan 34 cm libres para el descanso. Esta unión no certifica la carga del asiento.'],
+        positions: ['Marca la cara izquierda del tabique a 35,5 cm del extremo izquierdo de la base. La línea de tornillos queda en el centro de su espesor, a 36,25 cm del mismo extremo.', `Sobre esa línea, mide ${fromBack} cm desde el borde trasero de la base para marcar los centros de los tornillos.`, 'Primero y último a 4 cm de los extremos del tabique; separación entre centros de hasta 15 cm.'],
+        boards: [board('P01', 'Base completa · 18 mm', [0, 0, 0], [W, D, 1.8], [0, 0, -5]), board('P06', 'Tabique completo · 15 mm', [35.5, 1.5, 1.8], [1.5, supportLength, 41.4], [0, 0, 6])],
+        glue: [{ owner: 'P06', min: [35.5, 1.5, 1.77], size: [1.5, supportLength, 0.03] }],
+        fasteners: alongSupport.map((y, i) => ({ ...screw(`B${i + 1}`, 'P01', 'P06', [36.25, round(y + 1.5), 0], [0, 0, 1], 4), globalStart: [36.25, round(y + 1.5), f] })),
+        camera: [70, 95, 65]
       },
       {
-        id: 'corner', title: 'Esquina de las paredes', steps: [5, 6],
+        id: 'corner', title: 'Esquina de las paredes', steps: [5, 6], origin: [0, 0, f + 1.8],
         summary: 'La trasera cubre el canto del lateral. Atornilla desde la cara exterior de la trasera hacia ese canto.',
         notes: [common, 'La cola va en el canto de 15 mm que toca la trasera, únicamente durante el armado definitivo.', 'El tornillo de 40 mm cruza 15 mm de trasera y entra 25 mm en el lateral. Sujétalo a escuadra antes de perforar.', 'El ejemplo corresponde a P02 y P04. En el frente, adapta la distribución únicamente a las zonas macizas: nunca sobre entradas, ranura ni orificios.', 'Se muestran tramos de ambas paredes; los puntos no representan todas las fijaciones del mueble.'],
         positions: ['Eje de tornillos de esta esquina: x = 0,75 cm desde el extremo izquierdo de P02.', 'Alturas: 4 · 19 · 34 cm desde el borde inferior de las paredes.', `Alturas respecto del suelo con tus patas: ${[4, 19, 34].map(n => fmt(f + 1.8 + n)).join(' · ')} cm.`],
@@ -42,7 +42,7 @@
         camera: [-28, -40, 24]
       },
       {
-        id: 'cleat', title: 'Listón de apoyo de la tapa', steps: [7],
+        id: 'cleat', title: 'Listón de apoyo de la tapa', steps: [7], origin: [35.5, 1.5, f + 31.2],
         summary: 'L01 se fija a la cara derecha del tabique, con su borde superior a ras de P06.',
         notes: [common, 'Atornilla desde el lado de descanso: primero cruzas el terciado y después entras en el pino.', 'Propuesta: tornillos de 4 × 25 mm. Cruzan 15 mm de tabique, penetran 10 mm en el listón y dejan 9 mm hasta su cara opuesta.', 'No uses aquí los tornillos de 40 mm: atravesarían los 34 mm conjuntos. Verifica las medidas reales y evita hundir demasiado la cabeza.', 'La cola cubre la cara de contacto de 4,1 cm del listón. El tablero se muestra recortado para ver la unión.'],
         positions: [`L01: ${fmt(supportLength)} cm de largo, desde y = 1,5 hasta y = ${fmt(D - 1.5)} cm.`, `Tornillos: y = ${cleatFromBack} cm desde el borde trasero del mueble; alternados entre los tornillos que entran desde arriba por P07. No alinees ambos patrones.`, `Centros a 2,05 cm bajo el borde superior del tabique (z = ${fmt(f + 41.15)} cm desde el suelo).`],
@@ -52,7 +52,7 @@
         camera: [-34, 40, 24]
       },
       {
-        id: 'shelf', title: 'Listones y repisa desmontable', steps: [7],
+        id: 'shelf', title: 'Listones y repisa desmontable', steps: [7], origin: [W - 35.5, 0, f + 19.9],
         summary: 'L02 y L03 forman dos apoyos sin cruzarse. P10 descansa encima y se puede levantar para limpiar.',
         notes: [common, 'Atornilla los listones desde el exterior de las paredes con 4 × 25 mm: 15 mm de pared y 10 mm de entrada en el pino.', 'La cola solo va entre paredes y listones. No pegues la repisa si quieres retirarla.', 'L03 conserva su corte real de 18 cm: comienza después de L02 y sobresale 1,9 cm por delante de la repisa.', 'Comprueba con tu bandeja real que la repisa deje espacio antes de fijar la altura. Las paredes se muestran recortadas.'],
         positions: ['Borde superior de ambos listones: 27,2 cm sobre la cara interior de la base.', `L02: centros a 4 · 17 · 30 cm de su extremo izquierdo (x = ${[W - 31.5, W - 18.5, W - 5.5].map(fmt).join(' · ')} cm desde el extremo izquierdo del mueble).`, 'L03: centros a 4 y 14 cm de su extremo trasero (y = 7,4 y 17,4 cm desde la trasera del mueble).', 'En ambos listones, centra los tornillos a 2,05 cm bajo su borde superior.'],
@@ -62,7 +62,7 @@
         camera: [40, 50, 35]
       },
       {
-        id: 'fixed', title: 'Parte fija, refuerzo y holgura', steps: [8],
+        id: 'fixed', title: 'Parte fija, refuerzo y holgura', steps: [8], origin: [0, 0, f + 41.4],
         summary: 'P07 se fija al canto superior del tabique. P08 se encola por debajo y se mantiene prensado durante el secado.',
         notes: [common, 'Aplica cola entre P07 y P06, y en la superficie completa entre P07 y P08. Sigue el tiempo de prensado indicado en tu adhesivo.', 'En P07 → P06, los tornillos de 40 mm cruzan 18 mm y penetran 22 mm en el tabique.', 'No uses 40 mm para unir solo P07 y P08: suman 36 mm y la punta saldría. Este detalle propone cola y prensas para el refuerzo.', 'La tapa móvil P09 se muestra solo como referencia de la holgura; no se pega ni se atornilla a la parte fija.', 'Las fijaciones del rascador deben definirse con su base real. Este detalle no valida la capacidad para dos adultos.'],
         positions: ['P08: x = 2 a 35 cm; y = 1,5 a 34,5 cm, medidos desde la esquina trasera izquierda de P07.', 'Tornillos sobre P06: x = 36,25 cm desde el extremo izquierdo de P07.', `Centros: y = ${fromBack} cm desde el borde trasero de P07.`, 'P07 termina en x = 37 cm y P09 comienza en x = 37,5 cm: deja 5 mm de separación.'],
@@ -72,7 +72,7 @@
         camera: [45, 55, -35]
       },
       {
-        id: 'hinge', title: 'Presentación de las bisagras', steps: [10],
+        id: 'hinge', title: 'Presentación de las bisagras', steps: [10], origin: [62, 0, f + 33.2],
         summary: 'Presenta una hoja contra la cara exterior de la trasera y la otra bajo la tapa. Ajusta el eje y cualquier rebaje con la bisagra real.',
         notes: ['Esquema de presentación: el herraje está separado hacia atrás para ver sus dos hojas; no representa su asiento definitivo ni un rebaje ya resuelto.', 'Una hoja se prevé contra la cara exterior de P02 y la otra contra la cara inferior de P09. Su encaje o rebaje depende del espesor y del eje de la bisagra real.', 'Las hojas se muestran con espesor ilustrativo de 2 mm. Su grosor, eje, agujeros y recorrido se deben comprobar con el herraje comprado.', 'No se dibujan posiciones de taladros ni tornillos de bisagra. Transfiere los agujeros desde la pieza real, después de presentar y comprobar la apertura.', 'En P09 elige tornillos cuya penetración sea menor que los 18 mm de madera restantes después de cualquier rebaje. No uses directamente tornillos de 25 o 40 mm en la tapa sola.', 'L04 es opcional en el proyecto general y se propone aquí como respaldo interior de la trasera. Se muestra solo su unión encolada: define su fijación mecánica y el anclaje de la bisagra con el herraje real.', 'Ninguna hoja metálica lleva cola. Las bisagras simples no mantienen abierta la tapa; comprueba su apoyo y el recorrido antes de soltarla.'],
         positions: ['Centros propuestos de las tres bisagras: x = 45 · 70 · 95 cm desde el extremo izquierdo del mueble.', 'L04: de x = 40 a 100 cm, contra la cara interior de la trasera y a ras de su borde superior.', 'El detalle representa la bisagra central, H02; las posiciones de los agujeros quedan pendientes del herraje real.'],

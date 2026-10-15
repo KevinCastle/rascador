@@ -26,6 +26,15 @@ async function readable(page){
   await page.goto(url);await page.waitForFunction(()=>globalThis.GuideApp?.parts.length>20);
   await page.locator('[data-tab="cuts"]').click();
   assert.equal(await labels(page).count(),3,'Cada pieza debe tener tres cotas flotantes');
+  await page.evaluate(()=>{
+   const project=THREE.Vector3.prototype.project;
+   try{
+    THREE.Vector3.prototype.project=function(){return this.set(NaN,NaN,NaN)};
+    GuideApp.selectPiece('P01');
+   }finally{THREE.Vector3.prototype.project=project}
+  });
+  await page.waitForFunction(()=>[...document.querySelectorAll('#piece-dimensions .piece-dimension-label')].filter(el=>el.getBoundingClientRect().width).length===3);
+  assert.deepEqual(errors,[],'Una proyección inválida transitoria no debe detener el visor');
   assert.equal(await page.locator('#piece-dimensions').getAttribute('aria-hidden'),'true');
   assert.equal(await page.locator('#piece-dimensions').evaluate(el=>getComputedStyle(el).pointerEvents),'none');
   assert.ok(await page.locator('#piece-dimensions [marker-end]').count()>0,'Las cotas deben tener flechas');

@@ -186,4 +186,21 @@ Verificación: datos/geometría12/12 PASS, incluyendo153combinaciones de ancho/f
 
 Se mantuvo la plancha vertical también en escritorio para mejorar la legibilidad dentro del panel; la orientación del dibujo se explica como medida vertical × horizontal. Corrección contable frente al esquema anterior: las bandas de18mm y sus cortes ocupan99,6cm, y la segunda banda y sus cortes202,7cm con medidas iniciales. La distribución15mm conserva todas las piezas paralelas a la veta. Entrega local, sin commits ni push para esta mejora.
 
+## Corregir el contexto de las uniones
+
+Reporte: en el paso7 solo aparecen dos opciones y el tabique parece ir al centro de la base. Reproducción en Chromium488×853: selector filtra por paso; detalle base dibuja P01 de16×46cm y P06 de12cm de alto, centrado en el recorte. El modelo completo ya tiene las medidas correctas. La apariencia del recorte no comunica su escala ni su ubicación.
+
+Plan presentado: selector de seis uniones con pasos relacionados; abrir primero una vista de ubicación usando piezas completas del modelo, con selección opaca y contexto translúcido. Luego ofrecer detalle montado/separado. En base–tabique usar piezas completas también en el detalle (P01 W×D; P06 empieza a35,5cm y mide41,4cm de alto). En los otros detalles identificar los tramos en visor y etiquetas. Eliminar duplicado «(tramo)». Mantener paso/progreso, ajustes generales y límites de bisagras.
+
+Archivos: main `joinery.js` para corregir base y registrar orígenes globales; implementador `index.html` para selector/contexto/clones/controles; main pruebas y documentación. Sin dependencias ni cambios al diseño físico.
+
+- [x] Corregir geometría de base y comprobar equivalencia local/global de fijaciones.
+- [x] Mostrar las seis uniones y abrir en ubicación con geometría real, sin heredar estado del visor.
+- [x] Identificar recortes y comprobar retorno, selección y controles de detalles.
+- [x] Revisar capturas488/360/escritorio y pruebas de geometría/estado; registrar resultados.
+
+Verificación: datos/geometría13/13 PASS. Suites de uniones, progreso, armado y cotas PASS. Se comprobaron las seis opciones en los doce pasos, posiciones reales de contexto, geometría independiente, cambios de modo, retorno y controles; capturas revisadas a1440/488/360px y tema oscuro. Se corrigió la superposición de etiquetas de apoyos en móvil. Revisión independiente sin defectos materiales.
+
+La regresión de navegación reveló un fallo intermitente anterior: una proyección no finita durante el movimiento de cámara dejaba las cotas sin extremos y detenía el renderizado. Ahora se omite ese fotograma; una prueba fuerza la proyección inválida y comprueba recuperación y ausencia de errores. Armado y cotas volvieron a pasar después del arreglo. Sin teléfono físico ni Safari. Entrega local, sin commit ni publicación.
+
 Fuentes: plan y presupuesto locales para espesores, cantidades existentes y centros de bisagras. Scanavini https://tiendascanavini.cl/ficha/67/bisagras-acero-inoxidable-30x30-sin-rodamientos confirma bisagra3×3inox sinrodamientos; página sin plantilla dimensionada de agujeros. Titebond https://www.titebond.com/resources/use/glues?handler=Search respalda encolado sobre madera desnuda; seguir etiqueta de la cola comprada para presión/secado, sin trasladar tiempos de otra marca. Las separaciones y posiciones nuevas son propuestas geométricas propias, no recomendaciones estructurales de esos fabricantes.
