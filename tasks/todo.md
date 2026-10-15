@@ -269,3 +269,21 @@ La migración reconoce la fila anterior por producto+URL y la sustituye en guard
 ## Guardar todo el avance de materiales
 
 Solicitud explícita de commit de todos los cambios pendientes. Incluye lista editable con guardado local y respaldos, migraciones de catálogo, acabado con barniz, sustituciones de tornillos/patines/bisagras, herramientas aparte/existentes y documentos/pruebas asociados. Validación previa:25/25pruebas de datos/geometría/materiales PASS; navegador general PASS a escritorio/360px,12pasos, parámetros,3D, presupuesto, tema oscuro y fallbackCDN, sin errores de página. Suite específica de materiales PASS tras el último cambio de bisagras. Diff sin errores de espacios. Sin push ni publicación solicitados.
+
+## Versión imprimible para cotizar
+
+Solicitud: imprimir cortes, planos, medidas y materiales genéricos, sin marcas, datos comerciales, precios ni enlaces. Plan presentado:6páginasA4 (vista general, despiece, plancha18mm, plancha15mm, frente, materiales). Usar W/D/f actuales y geometría Guide/GuideCutting; impresión vectorial y tinta negra, sin depender de WebGL. Especificaciones necesarias y cantidades conservadas, sin textos de producto personalizados. Marcar materiales aportados por cliente según «Ya lo tengo»; brocha propia, rodillo/prensa aparte y accesorios existentes separados. No se omiten materiales necesarios del despiece.
+
+Archivos: print.js/print.css para documento puro; index.html para abrir/cerrar vista previa e imprimir/antes de imprimir; tests/print.test.cjs y tests/print.browser.cjs; README y registro. Sin dependencias nuevas para usuarios. No modificar progreso ni preferencias del visor. Main posee integración/pruebas/documentos; implementador posee print.js/css.
+
+- [x] Comprobar datos de cotización y exclusión de marcas/precios/enlaces con pruebas antes de implementar.
+- [x] Generar6páginas con planos/cotas SVG, despiece y materiales; integrar vista previa e impresión/PDF.
+- [x] Verificar A4 real,6páginas sin recortes, medidas dinámicas, privacidad comercial, móvil/teclado y fallback sin3D.
+- [x] Revisar PDF renderizado y registrar resultados.
+
+Criterios: ambas planchas122×244cm reservan3mm por corte; cada pieza tiene ID/cantidad/espesor/medidas; frente muestra entradas25×30,ranura12×3 y6orificiosØ20mm con referencias inequívocas; tablas coinciden con geometría actual. Aclarar esquemas no a escala, altura de patas referencial y fijaciones pendientes. Cotización contempla cortes/armado/acabado y adaptación de accesorios del cliente; no promete carga admisible ni montaje no confirmado.
+
+
+Verificación realizada: 27/27 pruebas de datos, cortes, uniones, materiales e impresión PASS; navegador general PASS (escritorio/360 px y fallback), suite imprimible PASS (seis hojas, parámetros actuales, propiedad, conservación de estado, teclado/móvil, impresión nativa y sin 3D). PDF generado y revisado visualmente en sus seis páginas: A4, sin recortes, sin anotaciones de enlaces ni contenido comercial. Límites del área de contenido comprobados en medidas predeterminadas y extremos permitidos. No se probó una impresora física. Se corrigieron el desborde de dos hojas y las interferencias de estilos globales en cotas y tablas. Sin dependencias de producción adicionales; no existe harness ni script de auditoría en este repositorio.
+
+Publicación autorizada explícitamente por el usuario: realizar commit y push después de estas comprobaciones y verificar el despliegue de GitHub Pages. El resultado se informa al entregar.

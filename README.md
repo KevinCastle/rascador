@@ -63,3 +63,12 @@ El registro de implementación y las verificaciones realizadas están en `tasks/
 Rodillo y prensa rápida se muestran en **Conseguir aparte**, fuera del listado editable y de ambos totales. Las listas y respaldos anteriores se adaptan conservando las ediciones de los materiales vigentes.
 
 La brocha ya está disponible y se excluye del presupuesto. Los seis patines PRO RACK seleccionados cuestan $9.540 referenciales en total ($1.590/u). Su ficha indica25×25mm y38mm de alto total; rosca, anclaje a madera y altura libre instalada requieren confirmación. El modelo conserva su separación al suelo como referencia, sin afirmar que corresponda al recorrido real del patín.
+
+
+## Planos para imprimir y cotizar
+
+El botón **Planos y materiales para imprimir**, bajo el título, abre seis hojas A4: vista general acotada, despiece y posiciones de armado, distribución en ambas planchas (18 y 15 mm), aberturas del frente y materiales genéricos. Usa las medidas actuales de la guía. Los dibujos son esquemas acotados, no plantillas a escala real.
+
+Pulsa **Imprimir / Guardar PDF** y selecciona A4 al 100 %, sin encabezados ni pies del navegador. También funciona la impresión habitual del navegador. La cotización omite marcas, precios, enlaces y textos comerciales personalizados. Mantiene cantidades y especificaciones necesarias; los materiales marcados como disponibles aparecen como aportados por el cliente. Volver a la guía conserva el progreso y los ajustes.
+
+Pruebas: `node --test tests/print.test.cjs` y, con Playwright y el servidor local disponibles, `node tests/print.browser.cjs`. La segunda genera `tests/screenshots/cotizacion-banca.pdf` y verifica impresión A4, parámetros, estado, móvil, teclado y funcionamiento sin el visor 3D.

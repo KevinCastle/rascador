@@ -1,0 +1,84 @@
+/* A4 quotation document: all styling scoped away from the interactive guide. */
+.print-entry{max-width:1600px;margin:0 auto;padding:0 26px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.print-entry button{min-height:44px;padding:10px 16px;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;font:inherit;font-weight:600;cursor:pointer}
+.print-entry button:hover{background:#8882}
+.print-entry button:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+.print-entry p{margin:0;font-size:.84rem;line-height:1.4}
+#print-document{display:none;color:#111;background:#e6e6e6;color-scheme:light;font-family:Arial,Helvetica,sans-serif;text-align:left}
+body.print-preview{overflow:auto!important;background:#e6e6e6!important;margin:0!important;display:block!important;height:auto!important;min-width:0!important}
+body.print-preview> :not(#print-document){display:none!important}
+body.print-preview #print-document{display:block;min-height:100vh;overflow-x:auto;padding:20px 0}
+#print-document,#print-document *{box-sizing:border-box}
+#print-document #print-toolbar{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;position:sticky;top:0;z-index:1;padding:12px;background:#fff;border:1px solid #bbb;width:min(210mm,100%);margin:0 auto 20px;font-size:14px}
+#print-document #print-toolbar button{min-height:44px;padding:8px 16px;color:#111;background:#fff;border:1px solid #555;border-radius:4px;font:inherit;cursor:pointer}
+#print-document #print-toolbar button:hover{background:#eee}
+#print-document #print-toolbar button:focus-visible{outline:3px solid #111;outline-offset:3px}
+#print-document #print-toolbar p{font-size:12px;margin:3px 0 0}
+#print-document #print-toolbar h2{font-size:15px;margin:0}
+#print-document .print-page{width:210mm;height:297mm;margin:0 auto 20px;padding:12mm;background:#fff;display:flex;flex-direction:column;font-size:9.1pt;line-height:1.34;box-shadow:0 2px 12px #0002;overflow:visible}
+#print-document .print-page-header{border-bottom:1.5pt solid #111;padding-bottom:3mm;margin-bottom:4mm;flex:none}
+#print-document .print-page-header .print-eyebrow{font-size:7.4pt;letter-spacing:1.1px;margin:0 0 1.5mm;font-weight:bold}
+#print-document h1{font-family:Arial,Helvetica,sans-serif;font-size:21pt;line-height:1.1;margin:0 0 2mm;font-weight:700;letter-spacing:normal;color:#111}
+#print-document .print-page-header p:last-child{margin:0;font-size:9pt}
+#print-document .print-page-content{flex:1;min-height:0}
+#print-document h2{font-family:Arial,Helvetica,sans-serif;font-weight:700;letter-spacing:normal;font-size:11pt;line-height:1.2;margin:5mm 0 2mm;color:#111}
+#print-document .print-page-content>h2:first-child{margin-top:0}
+#print-document p{margin:0 0 2.8mm;color:#111}
+#print-document .print-page-footer{display:flex;justify-content:space-between;gap:4mm;font-size:7.2pt;border-top:.6pt solid #555;padding-top:2mm;margin-top:3mm;flex:none}
+#print-document .print-page-footer span:last-child{white-space:nowrap;font-weight:bold}
+#print-document .print-table{border-collapse:collapse;width:100%;font-size:8.7pt;line-height:1.28;margin:0 0 3mm;color:#111;table-layout:auto}
+#print-document .print-table th,#print-document .print-table td{border-bottom:.5pt solid #aaa;vertical-align:top;text-align:left;padding:2mm 1.5mm;white-space:normal}
+#print-document .print-table thead th{font-size:8pt;border-top:1pt solid #222;border-bottom:1pt solid #222;font-weight:bold}
+#print-document .print-table tbody th{font-weight:600}
+#print-document .print-table th{font-family:Arial,Helvetica,sans-serif;color:#111;text-transform:none;letter-spacing:normal}
+#print-document .print-page:nth-child(2) .print-table th,#print-document .print-page:nth-child(2) .print-table td{padding-top:1.6mm;padding-bottom:1.6mm}
+#print-document .print-note{border-left:2pt solid #555;padding:2mm 0 2mm 3mm;font-size:8.5pt;line-height:1.35;margin:3mm 0}
+#print-document .print-steps{margin:0 0 3mm;padding-left:6mm}
+#print-document .print-steps li{padding-left:1mm;margin:0 0 2.8mm}
+#print-document .print-drawing{display:block;width:100%;height:auto;overflow:visible;margin:0 auto 2mm;fill:none;stroke:#222;stroke-width:1.2;stroke-linecap:square;font-family:Arial,Helvetica,sans-serif}
+#print-document .print-page:first-child .print-drawing{height:208mm;object-fit:contain}
+#print-document .print-drawing text{fill:#111;stroke:none;font-size:14px}
+#print-document .print-drawing .label{font-size:14px}
+#print-document .print-drawing .small-label{font-size:12px}
+#print-document .print-drawing .view-label{font-size:13px;font-weight:bold}
+#print-document .print-drawing .wood{fill:#f3f3f3}
+#print-document .print-drawing .unfilled{fill:none}
+#print-document .print-drawing .opening{fill:#fff}
+#print-document .print-drawing .accessory{fill:none;stroke-dasharray:5 3}
+#print-document .print-drawing .ground{stroke:#888;stroke-width:.7}
+#print-document .print-drawing .dimension{position:static;transform:none;padding:0;border:0;border-radius:0;background:none;white-space:normal;stroke:#333;stroke-width:.8;marker-start:var(--print-arrow);marker-end:var(--print-arrow)}
+#print-document .print-drawing .extension{stroke:#666;stroke-width:.7}
+#print-document .print-drawing .dim-label{font-size:14px;font-weight:bold;paint-order:stroke;stroke:white;stroke-width:4px;stroke-linejoin:round}
+#print-document .print-drawing .arrow{fill:#333;stroke:none}
+#print-document .print-drawing .scrap{fill:var(--print-hatch);stroke:#888;stroke-width:.6}
+#print-document .print-drawing .hatch-line{stroke:#bbb;stroke-width:.65}
+#print-document .print-drawing .kerf{fill:#555;stroke:none}
+#print-document .print-drawing .piece{fill:white;stroke:#111;stroke-width:1.3}
+#print-document .print-drawing .piece-id{font-size:17px;font-weight:bold}
+#print-document .print-drawing .piece-size{font-size:13px}
+#print-document .print-legend{display:flex;align-items:center;gap:2mm;font-size:8pt;margin:0 0 5mm}
+#print-document .print-legend span{width:5mm;height:3mm;display:inline-block;flex:none;margin-left:2mm;border:.5pt solid #555}
+#print-document .print-legend .legend-piece{background:#fff;margin-left:0}
+#print-document .print-legend .legend-scrap{background:repeating-linear-gradient(135deg,#fff 0 3px,#aaa 3px 4px)}
+#print-document .print-legend .legend-kerf{height:1mm;background:#555}
+#print-document .print-sheet-summary{border:1pt solid #555;padding:3mm;display:flex;justify-content:space-between;margin-top:5mm}
+#print-document .front-marks{font-size:8pt}
+#print-document .front-marks th,#print-document .front-marks td{padding:2mm 1mm}
+#print-document .materials-quote{font-size:8pt;line-height:1.25}
+#print-document .materials-quote th,#print-document .materials-quote td{padding:1.7mm 1mm}
+#print-document .materials-quote th:first-child{width:28%}
+#print-document .materials-quote td:nth-child(2){width:17%}
+#print-document .materials-quote td:last-child{width:18%;font-size:7.5pt}
+#print-document .print-compact{font-size:8.5pt}
+@media screen and (max-width:600px){.print-entry{padding:0 16px 14px;gap:8px}.print-entry button{width:100%}.print-entry p{font-size:.8rem}}
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  html,body{margin:0!important;padding:0!important;background:white!important;min-width:0!important;height:auto!important;overflow:visible!important;display:block!important}
+  body> :not(#print-document){display:none!important}
+  #print-document,body.print-preview #print-document{display:block!important;padding:0!important;margin:0!important;background:#fff!important;overflow:visible!important;min-height:0!important}
+  #print-document #print-toolbar{display:none!important}
+  #print-document .print-page{width:186mm;height:273mm;margin:0;padding:0;box-shadow:none;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always}
+  #print-document .print-page:last-child{break-after:auto;page-break-after:auto}
+  #print-document .print-page-header,#print-document .print-page-footer,#print-document tr,#print-document .print-drawing{break-inside:avoid;page-break-inside:avoid}
+  #print-document h2{break-after:avoid;page-break-after:avoid}
+}
