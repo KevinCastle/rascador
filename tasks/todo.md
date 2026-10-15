@@ -70,8 +70,10 @@ Plan:
 - [x] Selector accesible y botones en tablas para inspeccionar P01–P10/L01–L04 con medidas, espesor y cortes. L03 aislado mide18cm, aunque montado representa16,1cm.
 - [x] Separar poses/visibilidad de Pasos/Cortes respecto de capas, explosión y tapa de Modelo. Encuadrar únicamente piezas visibles. Conservar instrucciones y navegación sin WebGL.
 - [x] Verificar progresión, regreso entre pasos, piezas aisladas, parámetros, transición entre pestañas y360px con capturas.
-- [ ] Revisión independiente, pruebas existentes y nuevas, commit/push autorizado y comprobar despliegue Pages.
+- [x] Revisión independiente, pruebas existentes y nuevas, commit/push autorizado y comprobar despliegue Pages.
 
 Criterios: piezas futuras ausentes; contexto previamente montado visible; resaltado del trabajo actual; dimensiones sin inventar; piezas pequeñas encuadradas; acceso al visor desde navegación móvil. Publicar sobre el sitio existente tras validar.
 
 Validación local de esta mejora: pruebas de datos4/4 PASS; suite original de navegador PASS; nueva suite de armado PASS (14piezas, frente sin/con cortes, L03 de18cm, prueba en seco, capas/apertura independientes, medidas y navegación360px). Revisión independiente sin defectos importantes. Se corrigieron según capturas el ángulo de las vistas interiores, el resaltado y la superposición de etiquetas; prueba automática de etiquetas sin solapamientos en escritorio y360px.
+
+Publicación de vistas guiadas: commit17c3e24; GitHub Pages run38798091315 SUCCESS. Suite de armado ejecutada contra https://kevincastle.github.io/rascador/: PASS, incluidos escritorio/360px, etiquetas sin superposición y las14piezas aisladas.
