@@ -119,3 +119,52 @@ Aceptación: progreso real distinto de paso visitado; selección inicial restaur
 Validación local: nueva suite de progreso PASS, incluyendo12fichas, recarga/nueva pestaña, cuatro pendientes, paso/medidas, completado/desmarcado, teclado, datos inválidos, lectura/escritura bloqueadas y uso sinCDN. Regresiones de navegador, armado y cotas PASS; datos4/4 PASS. Capturas inspeccionadas1440/360px claro/oscuro. Revisión independiente sin bloqueos. Se reprodujo y corrigió navegación móvil que dejaba el título fuera de vista (y=−395px): los controles explícitos ahora enfocan y desplazan al nuevo título; test PASS. No probado en teléfono físico ni Safari.
 
 La publicación se realiza desde main mediante el despliegue existente de GitHub Pages; se comprobará su resultado y la suite de progreso contra la URL pública antes de confirmar la entrega.
+
+## Uniones explicadas en3D
+
+Solicitud aprobada: acercamientos de encuentros, cola, listones y bisagras; el usuario autoriza proponer posiciones por geometría. Las posiciones nuevas se identifican como propuestas de presentación en seco, sin atribuirles validación estructural.
+
+Plan presentado: detalles independientes del modelo general, accesibles desde pasos6/7/8/9/11. Seis uniones: base–tabique, pared–lateral, apoyoL01, esquina de repisaL02/L03, parte fija/refuerzo, bisagra. Controles unión montada/separada, cola y fijaciones, retorno al paso. Texto con piezas, cara de entrada, referencias y medidas; leyenda de cola y flechas. Sin guardar estado transitorio ni alterar progreso/capas/cotas.
+
+Decisiones: tornillos4×40 para caja y parte fija según plan; propuesta4×25 desde tablero15mm hacia listón19mm (10mm de entrada nominal, sin capacidad de carga calculada). P08 se encola/prensa, sin atravesar36mm con tornillos40mm. P10 se apoya: no añadir tornillos innecesarios. L03 conserva corte18cm, arranca trasL02 y sobresale1,9cm de P10; actualizar representación general y notas para eliminar la antigua abreviación16,1cm. Bisagra ilustrativa sobre caras amplias, no sobre canto estrecho; centros45/70/95 del plan. Agujeros y rebajes se trasladan del herraje real: no inventar plantilla ni longitudes de tornillos de bisagra.
+
+Archivos: `joinery.js` (datos geométricos y propuestas puras); `index.html` (UI, escenas, cámara, integración y notasL03); tests de geometría/uniones; README y este registro. Sin librerías adicionales. Guardar fuentes consultadas y diferenciar evidencia de decisiones propias.
+
+- [x] Inspeccionar código, plan, presupuesto y referencias del fabricante; definir esquema de integración.
+- [x] Crear datos de seis detalles con sólidos, caras de cola, tornillos y referencias de medida.
+- [x] Añadir interfaz y escenas con selección, separación, identificación, regreso y modo sinWebGL.
+- [x] Verificar recorridos de fijaciones, contactos, dimensiones y márgenes en tamaños extremos; mantener cotas/estado existentes.
+- [x] Probar seis escenas y controles, escritorio1440px/móvil360px, sinCDN, sin datos de detalle, regresiones y revisión independiente.
+- [x] Documentar resultados y entregar cambios locales sin commits, conforme a las instrucciones AGENTS.md más recientes.
+
+Validación local (2026-10-15): datos y geometría 9/9 PASS. Suites de navegador general, armado, cotas, progreso y uniones PASS. La comprobación de fijaciones abarca recorridos, puntas contenidas y posibles cruces entre detalles en coordenadas del mueble, en cuatro tamaños; los tornillos L01 se intercalaron con P07 para eliminar la interferencia detectada. El selector del test de armado se acotó al enlace del paso porque ahora existe además el enlace del detalle.
+
+Revisión independiente: corregidos foco al regresar y conservación de montaje/cola/fijaciones al reencuadrar; cubiertos por la suite de uniones. Capturas inspeccionadas en escritorio y360px: etiquetas, cola, separación, bisagra y encuadres. Sin errores de página en las suites. `git diff --check` PASS. No probado en teléfono físico ni Safari; no hay harness ni comando de auditoría en este proyecto. La geometría no constituye un cálculo de resistencia.
+
+Entrega local: no se crearon commits ni se hizo push. Las instrucciones actuales del usuario reservan los commits al usuario y sustituyen la autorización anterior. Esta mejora aún no está publicada en GitHub Pages.
+
+## Instrucciones claras para construir
+
+Solicitud: reescribir los doce pasos para una persona que no interpreta coordenadas ni vocabulario de carpintería. El ejemplo del frente mezcla trazado, cortes y perforaciones sin explicar cómo orientar el tablero.
+
+Plan: mantener los doce pasos, medidas dinámicas y funciones existentes. En `index.html`, presentar resumen, orientación de las piezas y acciones numeradas; revisar también herramientas, fijaciones, consejos y comprobaciones. Explicar términos en contexto, nombrar la pieza junto a su código y acompañar cada medida de unidad y borde de referencia. Distinguir el trazado del corte y las propuestas de fijación de aquello que aún depende del herraje real. Sin rediseñar el mueble ni publicar.
+
+- [x] Reescribir y renderizar instrucciones de los doce pasos.
+- [x] Revisar coherencia con el plan, uniones y herramientas necesarias.
+- [x] Comprobar medidas dinámicas del frente y referencias de orientación.
+- [x] Revisar lectura en escritorio/360px, navegación, progreso y funcionamiento sin 3D.
+- [x] Registrar resultados y entregar vista previa local, sin commits.
+
+Aceptación: el paso del frente permite identificar arriba, abajo e izquierda y trazar cada abertura sin interpretar ejes; cada acción indica qué hacer y sobre qué pieza; no se pierden dimensiones ni se inventan fijaciones pendientes. Listas legibles en móvil, contenido accesible sin depender del visor y progreso compatible.
+
+Resultado: `Guide.instructions(index,W,D,f)` genera preparación y acciones numeradas para los doce pasos. Fichas, consejos y descripción del visor usan el mismo vocabulario. Se explican canto, a ras, escuadra, holgura, agujero guía, diámetro y rebaje. Los recortes interiores requieren una herramienta apta o encargarlos; se eliminó la indicación ambigua de llevar la circular hasta una marca interior. Se aclara marcar P07 antes de voltearlo y dejar madera limpia para pegar L04 después del acabado.
+
+Revisión independiente: se aclaró que la alfombra de 66 × 46 cm no cabe entera solo en la antecámara; el paso 6 pide comprobar si se extiende bajo la bandeja o se adapta cuando su material lo permita, y el paso 12 remite a ese ajuste. Geometría y presupuesto no modificados.
+
+Verificación (2026-10-15): datos y geometría 10/10 PASS, incluyendo medidas del frente a anchos120/134/135/136. Suites navegador general, progreso y uniones PASS. La suite de progreso comprueba listas en los doce pasos, medidas restauradas, navegación, almacenamiento y uso sin3D. Capturas del frente inspeccionadas a1440/360px: listas legibles y sin desbordamiento. `git diff --check` PASS. Sin teléfono físico ni Safari; sin commits ni publicación.
+
+## Guardar el avance en commits
+
+El usuario pidió expresamente realizar commits de todo el avance, como excepción a la instrucción anterior de reservarle los commits. Se agrupan el código y sus pruebas en un commit, y la documentación y lecciones en otro. Antes de guardar: datos y geometría 10/10 PASS y `git diff --check` PASS. Esta solicitud no incluye push ni publicación; quedan dos mejoras posteriores por definir.
+
+Fuentes: plan y presupuesto locales para espesores, cantidades existentes y centros de bisagras. Scanavini https://tiendascanavini.cl/ficha/67/bisagras-acero-inoxidable-30x30-sin-rodamientos confirma bisagra3×3inox sinrodamientos; página sin plantilla dimensionada de agujeros. Titebond https://www.titebond.com/resources/use/glues?handler=Search respalda encolado sobre madera desnuda; seguir etiqueta de la cola comprada para presión/secado, sin trasladar tiempos de otra marca. Las separaciones y posiciones nuevas son propuestas geométricas propias, no recomendaciones estructurales de esos fabricantes.
